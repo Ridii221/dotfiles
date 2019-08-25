@@ -1,5 +1,5 @@
 #!/bin/bash
 # todo for each dir run install.sh
-sh X/install.sh
-sh vimrc/install.sh
-sh zshrc/install.sh
+sh $HOME/dotfiles/X/install.sh
+sh $HOME/dotfiles/vimrc/install.sh
+sh $HOME/dotfiles/zshrc/install.sh

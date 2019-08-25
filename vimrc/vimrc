@@ -67,6 +67,7 @@ command W w !sudo tee % > /dev/null
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
@@ -75,6 +76,8 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'rust-lang/rust.vim' 
+Plugin 'altercation/vim-colors-solarized'
+
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -196,17 +199,17 @@ set foldcolumn=1
 " Enable syntax highlighting
 syntax enable 
 
-" Enable 256 colors palette in Gnome Terminal
-if $COLORTERM == 'gnome-terminal'
-    set t_Co=256
-endif
 
-try
-    colorscheme desert
-catch
-endtry
+" Enable 256 colors 
+set t_Co=256
 
 set background=dark
+
+try
+    let g:solarized_termcolors=256 
+    colorscheme solarized
+catch
+endtry
 
 " Set extra options when running in GUI mode
 if has("gui_running")
