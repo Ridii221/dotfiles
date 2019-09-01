@@ -71,9 +71,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# Change keymap
-xmodmap ~/.Xmodmap
-
 # Rust env
 source $HOME/.cargo/env
 
@@ -97,6 +94,18 @@ source $HOME/.cargo/env
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# Aliases
+# 
+alias vim="nvim" 
+alias q="exit" 
+
+
+
+
+
+# conf for kitty
+autoload -Uz compinit
+compinit
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin
+
