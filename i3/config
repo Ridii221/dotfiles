@@ -181,7 +181,7 @@ bar {
 # => Shortcuts
 #########################################################################
 # Run nvim wrapper
-bindsym Mod1+Shift+n exec nvim-wrapper
+# bindsym Mod1+Shift+n exec nvim-wrapper
  
 #########################################################################
 # => Startup
@@ -189,8 +189,4 @@ bindsym Mod1+Shift+n exec nvim-wrapper
 # Start firefox, terminal, and spotify on 4 workspace
 exec firefox
 # exec --no-startup-id i3-msg 'workspace 3; exec spotify; workspace 1'
-exec gnome-terminal
-
-# Run custom xmdodmap
-exec_always ~/.xmodmap.sh
 
