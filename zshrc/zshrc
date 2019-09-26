@@ -98,7 +98,7 @@ source $HOME/.cargo/env
 # 
 alias vim="nvim" 
 alias q="exit" 
-
+alias :q="exit"
 
 
 
@@ -108,4 +108,5 @@ autoload -Uz compinit
 compinit
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
+xmodmap ~/.Xmodmap
 
