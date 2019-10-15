@@ -100,6 +100,8 @@ alias vim="nvim"
 alias q="exit" 
 alias :q="exit"
 
+alias dc="docker-compose"
+
 #whatthecommit.com
 alias lol="curl --silent --fail https://whatthecommit.com/index.txt"
 
