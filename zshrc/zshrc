@@ -74,6 +74,10 @@ source $ZSH/oh-my-zsh.sh
 # Rust env
 source $HOME/.cargo/env
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -96,11 +100,14 @@ source $HOME/.cargo/env
 #
 # Aliases
 # 
+alias fuck="sudo !!" 
+
 alias vim="nvim" 
+alias svim="vim -u ~/.SpaceVim/vimrc"
 alias q="exit" 
 alias :q="exit"
 
-alias dc="docker-compose"
+alias dockerc="docker-compose"
 
 #whatthecommit.com
 alias lol="curl --silent --fail https://whatthecommit.com/index.txt"
