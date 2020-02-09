@@ -108,14 +108,38 @@ alias q="exit"
 alias :q="exit"
 
 alias dockerc="docker-compose"
+alias dockerk="docker kill $(docker ps -q)"
 
-#whatthecommit.com
-alias lol="curl --silent --fail https://whatthecommit.com/index.txt"
+alias youtube-wav="youtube-dl -x --audio-format wav"
+
+#kitty
+alias icat="kitty +kitten icat"
+alias d="kitty +kitten diff"
+export KITTY_CONFIG_DIRECTORY="$HOME/.config/kitty"
+
+#git
+alias gommit="git commit"
+alias gdd="git add"
+alias gtatus="git status"
+alias gatus="git status"
+alias giff="git difftool --no-symlinks --dir-diff"
+alias gheckout="git checkout"
+alias getch="git fetch"
+alias gull="git pull"
+alias gush="git push"
+alias gcommit="git commit"
+alias gadd="git add"
+alias gstatus="git status"
+alias gdiff="git difftool --no-symlinks --dir-diff"
+alias gcheckout="git checkout"
+alias gfetch="git fetch"
+alias gpull="git pull"
+alias gpush="git push"
 
 # conf for kitty
 autoload -Uz compinit
 compinit
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
-xmodmap ~/.Xmodmap
+
 
