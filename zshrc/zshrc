@@ -136,6 +136,14 @@ alias gfetch="git fetch"
 alias gpull="git pull"
 alias gpush="git push"
 
+function todo() {
+  vim $HOME/Documents/todo/todo.$1
+}
+
+function stodo() {
+  svim $HOME/Documents/todo/todo.$1
+}
+
 # conf for kitty
 autoload -Uz compinit
 compinit
