@@ -162,7 +162,8 @@ map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove 
-map <leader>t<leader> :tabnext 
+" Open all buffers in tabs
+map <leader>ta :tab sball<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 " todo
