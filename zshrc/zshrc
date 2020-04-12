@@ -70,6 +70,8 @@ plugins=(git pip python node npm docker cargo)
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+# fzf
+source /usr/share/doc/fzf/examples/key-bindings.zsh
 
 # Rust env
 source $HOME/.cargo/env
@@ -137,11 +139,11 @@ alias gpull="git pull"
 alias gpush="git push"
 
 function todo() {
-  vim $HOME/Documents/todo/todo.$1
+  vim $HOME/Documents/todo/$1
 }
 
 function stodo() {
-  svim $HOME/Documents/todo/todo.$1
+  svim $HOME/Documents/todo/$1
 }
 
 # conf for kitty
@@ -149,5 +151,4 @@ autoload -Uz compinit
 compinit
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
-
 
