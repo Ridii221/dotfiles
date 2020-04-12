@@ -33,6 +33,7 @@ Plugin 'VundleVim/Vundle.vim'
 " todo solarized colors, fzf, tree, js?
 Plugin 'iCyMind/NeoSolarized'
 Plugin 'preservim/nerdtree'
+Plugin 'airblade/vim-gitgutter'
 
 
 call vundle#end()            " required
