@@ -46,6 +46,9 @@ filetype plugin indent on    " required
 " Toggle NERDTree
 map <F3> :NERDTreeToggle<CR>
 
+" NERDTree ui"
+let g:NERDTreeMinimalUI = 1
+
 " Open a NERDTree automatically when vim starts up if no files were specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -55,6 +58,14 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 " NERTree on the right
 let g:NERDTreeWinPos = "right"
+
+" Open and close node with l and h"
+let g:NERDTreeMapActivateNode = "l"
+let g:NERDTreeMapOpenRecursively = "L"
+let g:NERDTreeMapCloseDir = "h"
+let g:NERDTreeMapCloseChildren = "H"
+
+let g:NERDTreeMapToggleHidden = "."
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	1. General
