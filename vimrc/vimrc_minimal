@@ -34,8 +34,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'iCyMind/NeoSolarized'
 Plugin 'preservim/nerdtree'
 Plugin 'airblade/vim-gitgutter'
-" require https://ctags.io/
-" Plugin 'majutsushi/tagbar'
 
 
 call vundle#end()            " required
@@ -69,11 +67,6 @@ let g:NERDTreeMapCloseDir = "h"
 let g:NERDTreeMapCloseChildren = "H"
 
 let g:NERDTreeMapToggleHidden = "."
-
-"""""""""""""""""""""""""""""""""
-"	0.2 Tagbar
-"""""""""""""""""""""""""""""""""
-" nmap <F2> :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	1. General
