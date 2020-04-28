@@ -35,7 +35,7 @@ Plugin 'iCyMind/NeoSolarized'
 Plugin 'preservim/nerdtree'
 Plugin 'airblade/vim-gitgutter'
 " require https://ctags.io/
-" Plugin 'majutsushi/tagbar'
+Plugin 'majutsushi/tagbar'
 
 
 call vundle#end()            " required
@@ -73,11 +73,14 @@ let g:NERDTreeMapToggleHidden = "."
 """""""""""""""""""""""""""""""""
 "	0.2 Tagbar
 """""""""""""""""""""""""""""""""
-" nmap <F2> :TagbarToggle<CR>
+nmap <F2> :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	1. General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" mouse
+set mouse=a
 
 " Set line number
 set number
@@ -110,8 +113,8 @@ nnoremap <leader>p "+p
 " (useful for handling the permission-denied error)
 " command W w !sudo tee % > /dev/null
 
-" Close vim
-nnoremap <leader>q :qa<cr>
+" Close
+nnoremap <leader>q :q<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

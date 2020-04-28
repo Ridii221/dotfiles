@@ -72,6 +72,9 @@ let g:NERDTreeMapToggleHidden = "."
 "	1. General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" mouse
+set mouse=a
+
 " Set line number
 set number
 set relativenumber
@@ -103,8 +106,8 @@ nnoremap <leader>p "+p
 " (useful for handling the permission-denied error)
 " command W w !sudo tee % > /dev/null
 
-" Close vim
-nnoremap <leader>q :qa<cr>
+" Close
+nnoremap <leader>q :q<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
