@@ -39,6 +39,7 @@ Plugin 'neoclide/coc.nvim'
 " :CocInstall coc-tsserver coc-json
 " JavaScript
 Plugin 'leafgarland/typescript-vim'
+Plugin 'ianks/vim-tsx'
 
 
 " require https://ctags.io/
