@@ -7,7 +7,7 @@ firefox &
 spotify &
 discord & 
 
-sleep 15
+sleep 60
 
 # move to specific workspaces
 # wmctrl -r app -t index
