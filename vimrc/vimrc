@@ -19,6 +19,14 @@
 "	0. Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" My plugins
+source ~/.vim/plugin/todo_list.vim
+
+nmap <leader>vv :call TodoListCheckDoneToggle()<CR>
+" todo normalna funkcja do zwijania i rozwijania
+nmap <leader>v :call TodoListFoldToggle()<CR>
+nmap <leader>vh :call TodoListHideNotActiveToggle()<CR>
+
 " Vundle
 " https://github.com/VundleVim/Vundle.vim
 
@@ -40,6 +48,8 @@ Plugin 'neoclide/coc.nvim'
 " JavaScript
 Plugin 'leafgarland/typescript-vim'
 Plugin 'ianks/vim-tsx'
+" LaTeX
+Plugin 'lervag/vimtex'
 
 
 " require https://ctags.io/
@@ -56,6 +66,9 @@ filetype plugin indent on    " required
 
 " Toggle NERDTree
 map <F3> :NERDTreeToggle<CR>
+
+" Find current file in tree
+nnoremap <leader>ff :NERDTreeFind %<CR>
 
 " NERDTree ui"
 let g:NERDTreeMinimalUI = 1
@@ -212,6 +225,11 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
+"""""""""""""""""""""""""""""""""
+"	0.4 VimTeX
+"""""""""""""""""""""""""""""""""
+let g:vimtex_view_method = "zathura"
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	1. General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -243,6 +261,7 @@ filetype off                  " required for vundle
 set autoread
 
 " Map space to leader
+let maplocalleader = " "
 let mapleader = " "
 
 " Fast saving
@@ -302,8 +321,8 @@ map [t gT
 map ]t gt
 
 " Move between windows
-map [w <C-W>w
-map ]w <C-W>W
+map [w <C-W>W
+map ]w <C-W>w
 
 " Move between buffers
 map [b :bprevious<cr>
