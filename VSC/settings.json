@@ -1,0 +1,25 @@
+{
+  "keyboard.dispatch": "keyCode",
+  "vim.easymotion": false,
+  "vim.incsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.useCtrlKeys": true,
+  "vim.foldfix": true,
+  "vim.hlsearch": true,
+  "vim.normalModeKeyBindingsNonRecursive": [
+    {
+      "before": [
+        "<leader>",
+        "s"
+      ],
+      "commands": [
+        ":w"
+      ]
+    }
+  ],
+  "vim.leader": "<space>",
+  "vim.handleKeys": {
+    "<C-a>": false,
+    "<C-f>": false
+  }
+}
