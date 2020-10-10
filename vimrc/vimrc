@@ -8,9 +8,10 @@
 "	3. Tabs / Windows / Buffers
 "	4. VIM UI
 "	5. Text formating
-"	6. Editing mappings
-"	7. Status and tab line
-"	8. Misc
+"	6. Movement mappings
+"	7. Editing mappings
+"	8. Status and tab line
+"	9. Misc
 "
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -51,11 +52,6 @@ Plugin 'ianks/vim-tsx'
 " LaTeX
 " Plugin 'lervag/vimtex'
 
-
-" require https://ctags.io/
-" Plugin 'majutsushi/tagbar'
-
-
 call vundle#end()            " required
 filetype plugin indent on    " required
 
@@ -92,12 +88,7 @@ let g:NERDTreeMapCloseChildren = "H"
 let g:NERDTreeMapToggleHidden = "."
 
 """""""""""""""""""""""""""""""""
-"	0.2 Tagbar
-"""""""""""""""""""""""""""""""""
-nmap <F2> :TagbarToggle<CR>
-
-"""""""""""""""""""""""""""""""""
-"	0.3 CoC
+"	0.2 CoC
 """""""""""""""""""""""""""""""""
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -227,7 +218,7 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
 """""""""""""""""""""""""""""""""
-"	0.4 VimTeX
+"	0.3 VimTeX
 """""""""""""""""""""""""""""""""
 " let g:vimtex_view_method = "zathura"
 
@@ -460,9 +451,34 @@ set ai "Auto indent
 set si "Smart indent
 set nowrap "Wrap lines
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"	6. Movement mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""
+"	From CoC plugin
+"""""""""""""""""""""""""""""""""
+"
+" GoTo code navigation.
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+"
+"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""
+"	Vim default refrence
+"""""""""""""""""""""""""""""""""
+"
+" :he jump-motions
+"
+"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	6. Editing mappings
+"	7. Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Auto closing
@@ -486,7 +502,7 @@ noremap L g_
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	7. Status and tab line
+"	8. Status and tab line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Always show the tab line
@@ -500,11 +516,11 @@ set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	8. Misc
+"	9. Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""
-"	8.1 Clipboard
+"	9.1 Clipboard
 """""""""""""""""""""""""""""""""
 
 set clipboard+=unnamedplus
