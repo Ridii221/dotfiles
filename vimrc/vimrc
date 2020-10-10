@@ -28,31 +28,26 @@
 " nmap <leader>v :call TodoListFoldToggle()<CR>
 " nmap <leader>vh :call TodoListHideNotActiveToggle()<CR>
 
-" Vundle
-" https://github.com/VundleVim/Vundle.vim
+" plug.vim
+" https://github.com/junegunn/vim-plug
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " Basic
-Plugin 'iCyMind/NeoSolarized'
-Plugin 'preservim/nerdtree'
-Plugin 'airblade/vim-gitgutter'
+Plug 'iCyMind/NeoSolarized'
+Plug 'preservim/nerdtree'
+Plug 'airblade/vim-gitgutter'
 " Autocompletion
-Plugin 'neoclide/coc.nvim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Run after installation
 " :CocInstall coc-tsserver coc-json
 " JavaScript
-Plugin 'leafgarland/typescript-vim'
-Plugin 'ianks/vim-tsx'
+Plug 'leafgarland/typescript-vim'
+Plug 'ianks/vim-tsx'
 " LaTeX
-" Plugin 'lervag/vimtex'
+" Plug 'lervag/vimtex'
 
-call vundle#end()            " required
+call plug#end()            " required
 filetype plugin indent on    " required
 
 
