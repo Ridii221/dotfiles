@@ -5,7 +5,7 @@ wmctrl -n 3
 # list start up apps
 firefox &
 spotify &
-discord & 
+#discord & 
 
 sleep 60
 
@@ -13,7 +13,7 @@ sleep 60
 # wmctrl -r app -t index
 wmctrl -r firefox -t 0 
 wmctrl -r spotify -t 1
-wmctrl -r discord -t 1
+#wmctrl -r discord -t 1
 
 wmctrl -k on
 # focus on
