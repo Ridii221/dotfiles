@@ -20,12 +20,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " My plugins
-source ~/.vim/plugin/todo_list.vim
+" source ~/.vim/plugin/todo_list.vim
 
-nmap <leader>vv :call TodoListCheckDoneToggle()<CR>
+" nmap <leader>vv :call TodoListCheckDoneToggle()<CR>
 " todo normalna funkcja do zwijania i rozwijania
-nmap <leader>v :call TodoListFoldToggle()<CR>
-nmap <leader>vh :call TodoListHideNotActiveToggle()<CR>
+" nmap <leader>v :call TodoListFoldToggle()<CR>
+" nmap <leader>vh :call TodoListHideNotActiveToggle()<CR>
 
 " Vundle
 " https://github.com/VundleVim/Vundle.vim
@@ -49,7 +49,7 @@ Plugin 'neoclide/coc.nvim'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'ianks/vim-tsx'
 " LaTeX
-Plugin 'lervag/vimtex'
+" Plugin 'lervag/vimtex'
 
 
 " require https://ctags.io/
@@ -65,7 +65,7 @@ filetype plugin indent on    " required
 """""""""""""""""""""""""""""""""
 
 " Toggle NERDTree
-map <F3> :NERDTreeToggle<CR>
+map <C-n> :NERDTreeToggle<CR>
 
 " Find current file in tree
 nnoremap <leader>ff :NERDTreeFind %<CR>
@@ -81,7 +81,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " NERTree on the right
-let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos = "left"
 
 " Open and close node with l and h"
 let g:NERDTreeMapActivateNode = "l"
@@ -102,6 +102,7 @@ nmap <F2> :TagbarToggle<CR>
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 
+let g:coc_disable_startup_warning = 1
 
 
 " other plugin before putting this into your config.
@@ -228,7 +229,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 """""""""""""""""""""""""""""""""
 "	0.4 VimTeX
 """""""""""""""""""""""""""""""""
-let g:vimtex_view_method = "zathura"
+" let g:vimtex_view_method = "zathura"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	1. General
@@ -358,10 +359,9 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 "
 nnoremap <leader>wt <C-W>T
 nnoremap <leader>wo <C-W>o
-" todo toggle maximize window
-" map <leader>wh <C-W>_
-" map <leader>wv <C-W>|
-" map <leader>w= <C-W>=
+nnoremap <leader>wh <C-W>_
+nnoremap <leader>wl <C-W>\|
+nnoremap <leader>ww <C-W>=
 
 
 
@@ -502,6 +502,15 @@ set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	8. Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""
+"	8.1 Clipboard
+"""""""""""""""""""""""""""""""""
+
+set clipboard+=unnamedplus
+
+"""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""
 
 " Toggle paste mode on and off
 set pastetoggle=<F2>
