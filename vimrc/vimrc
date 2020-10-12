@@ -16,6 +16,10 @@
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Map space to leader
+let maplocalleader = " "
+let mapleader = " "
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	0. Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -212,11 +216,6 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-"""""""""""""""""""""""""""""""""
-"	0.3 VimTeX
-"""""""""""""""""""""""""""""""""
-" let g:vimtex_view_method = "zathura"
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	1. General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -246,10 +245,6 @@ filetype off                  " required for vundle
 
 " Set to auto read when a file is changed from the outside
 set autoread
-
-" Map space to leader
-let maplocalleader = " "
-let mapleader = " "
 
 " Fast saving
 nmap <leader>s :w!<cr>
