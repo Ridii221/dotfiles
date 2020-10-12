@@ -17,7 +17,9 @@ if [ ! -f ${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim ]; th
 fi
 
 cp vimrc ~/.vimrc
-#neovim config
+# neovim config
 cp init.vim ~/.config/nvim
+# coc settings
+cp coc-settings.json ~/.config/nvim/coc-settings.json
 
 echo "Done"
