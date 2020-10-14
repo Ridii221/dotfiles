@@ -16,6 +16,9 @@ if [ ! -f ${XDG_DATA_HOME:-$HOME/.local/share}/nvim/site/autoload/plug.vim ]; th
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 fi
 
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 cp vimrc ~/.vimrc
 #neovim config
 cp init.vim ~/.config/nvim
