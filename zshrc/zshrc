@@ -67,6 +67,8 @@ ZSH_THEME="gallois"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git pip python node npm docker cargo)
 
+export PATH=$PATH:/snap/bin
+
 source $ZSH/oh-my-zsh.sh
 
 # Rust env
@@ -100,7 +102,7 @@ export MANPATH="/usr/local/man:$MANPATH"
 # 
 alias fuck="sudo !!" 
 
-alias vim="snap run nvim" 
+alias vim="nvim" 
 alias q="exit" 
 alias :q="exit"
 
