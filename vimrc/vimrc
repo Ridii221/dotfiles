@@ -31,6 +31,7 @@ call plug#begin(stdpath('data') . '/plugged')
 
 " Basic
 Plug 'iCyMind/NeoSolarized'
+Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
 Plug 'airblade/vim-gitgutter'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -47,6 +48,11 @@ Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
 " LaTeX
 " Plug 'lervag/vimtex'
+"
+" todo
+" https://github.com/tpope/vim-surround
+" https://github.com/terryma/vim-multiple-cursors
+" https://github.com/tpope/vim-fugitive
 
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -84,7 +90,14 @@ let g:NERDTreeMapCloseChildren = "H"
 let g:NERDTreeMapToggleHidden = "."
 
 """""""""""""""""""""""""""""""""
-"	0.2 CoC
+"	0.2 lightline 
+"""""""""""""""""""""""""""""""""
+
+" todo make it work
+let g:lightline.colorscheme = 'solarized'
+
+"""""""""""""""""""""""""""""""""
+"	0.3 CoC
 """""""""""""""""""""""""""""""""
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
