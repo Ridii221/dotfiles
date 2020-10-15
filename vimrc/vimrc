@@ -33,16 +33,22 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'iCyMind/NeoSolarized'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
+
+" Git
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " requires 
 " https://github.com/sharkdp/bat
 " https://github.com/BurntSushi/ripgrep
 Plug 'junegunn/fzf.vim'
+
 " Autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Run after installation
 " :CocInstall coc-tsserver coc-json
+
 " JavaScript
 Plug 'leafgarland/typescript-vim'
 Plug 'ianks/vim-tsx'
@@ -52,7 +58,7 @@ Plug 'ianks/vim-tsx'
 " todo
 " https://github.com/tpope/vim-surround
 " https://github.com/terryma/vim-multiple-cursors
-" https://github.com/tpope/vim-fugitive
+" https://github.com/romainl/vim-qf
 
 call plug#end()            " required
 filetype plugin indent on    " required
