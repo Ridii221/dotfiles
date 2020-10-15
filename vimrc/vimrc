@@ -90,14 +90,7 @@ let g:NERDTreeMapCloseChildren = "H"
 let g:NERDTreeMapToggleHidden = "."
 
 """""""""""""""""""""""""""""""""
-"	0.2 lightline 
-"""""""""""""""""""""""""""""""""
-
-" todo make it work
-let g:lightline.colorscheme = 'solarized'
-
-"""""""""""""""""""""""""""""""""
-"	0.3 CoC
+"	0.2 CoC
 """""""""""""""""""""""""""""""""
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -511,8 +504,18 @@ set stal=2
 " Always show the status line
 set laststatus=2
 
+set noshowmode
+
 " Format the status line
-set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+" set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+
+"""""""""""""""""""""""""""""""""
+" 	From lightline
+"""""""""""""""""""""""""""""""""
+
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ }
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
