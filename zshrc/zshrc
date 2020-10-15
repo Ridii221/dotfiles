@@ -128,3 +128,5 @@ compinit
 kitty + complete setup zsh | source /dev/stdin
 
 # export PATH="$HOME/.symfony/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
