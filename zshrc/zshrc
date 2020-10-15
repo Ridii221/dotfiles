@@ -67,20 +67,19 @@ ZSH_THEME="gallois"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git pip python node npm docker cargo)
 
+export PATH=$PATH:$HOME/.local/bin
+export PATH=$PATH:/snap/bin
+
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-# fzf
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-
 # Rust env
-source $HOME/.cargo/env
+# source $HOME/.cargo/env
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -105,7 +104,6 @@ export NVM_DIR="$HOME/.nvm"
 alias fuck="sudo !!" 
 
 alias vim="nvim" 
-alias svim="vim -u ~/.SpaceVim/vimrc"
 alias q="exit" 
 alias :q="exit"
 
@@ -119,31 +117,8 @@ alias icat="kitty +kitten icat"
 alias d="kitty +kitten diff"
 export KITTY_CONFIG_DIRECTORY="$HOME/.config/kitty"
 
-#git
-alias gommit="git commit"
-alias gdd="git add"
-alias gtatus="git status"
-alias gatus="git status"
-alias giff="git difftool --no-symlinks --dir-diff"
-alias gheckout="git checkout"
-alias getch="git fetch"
-alias gull="git pull"
-alias gush="git push"
-alias gcommit="git commit"
-alias gadd="git add"
-alias gstatus="git status"
-alias gdiff="git difftool --no-symlinks --dir-diff"
-alias gcheckout="git checkout"
-alias gfetch="git fetch"
-alias gpull="git pull"
-alias gpush="git push"
-
 function todo() {
   vim $HOME/Documents/todo/$1
-}
-
-function stodo() {
-  svim $HOME/Documents/todo/$1
 }
 
 # conf for kitty
@@ -152,3 +127,4 @@ compinit
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
 
+# export PATH="$HOME/.symfony/bin:$PATH"

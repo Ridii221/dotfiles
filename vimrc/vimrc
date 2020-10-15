@@ -24,18 +24,10 @@ let mapleader = " "
 "	0. Plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" My plugins
-" source ~/.vim/plugin/todo_list.vim
-
-" nmap <leader>vv :call TodoListCheckDoneToggle()<CR>
-" todo normalna funkcja do zwijania i rozwijania
-" nmap <leader>v :call TodoListFoldToggle()<CR>
-" nmap <leader>vh :call TodoListHideNotActiveToggle()<CR>
-
 " plug.vim
 " https://github.com/junegunn/vim-plug
 
-call plug#begin('~/.vim/plugged')
+call plug#begin(stdpath('data') . '/plugged')
 
 " Basic
 Plug 'iCyMind/NeoSolarized'
