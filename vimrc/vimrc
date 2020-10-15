@@ -41,6 +41,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'iCyMind/NeoSolarized'
 Plug 'preservim/nerdtree'
 Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" requires 
+" https://github.com/sharkdp/bat
+" https://github.com/BurntSushi/ripgrep
+Plug 'junegunn/fzf.vim'
 " Autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Run after installation
