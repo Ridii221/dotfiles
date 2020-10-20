@@ -118,7 +118,7 @@ alias d="kitty +kitten diff"
 export KITTY_CONFIG_DIRECTORY="$HOME/.config/kitty"
 
 function todo() {
-  vim $HOME/Documents/todo/$1
+  vim $HOME/Dokumenty/todo/$1
 }
 
 # conf for kitty
