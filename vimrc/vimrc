@@ -33,6 +33,9 @@ call plug#begin(stdpath('data') . '/plugged')
 Plug 'iCyMind/NeoSolarized'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
+Plug 'sheerun/vim-polyglot'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -50,15 +53,14 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " :CocInstall coc-tsserver coc-json
 
 " JavaScript
-Plug 'leafgarland/typescript-vim'
-Plug 'ianks/vim-tsx'
-" LaTeX
-" Plug 'lervag/vimtex'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'ianks/vim-tsx'
 "
 " todo
 " https://github.com/tpope/vim-surround
 " https://github.com/terryma/vim-multiple-cursors
 " https://github.com/romainl/vim-qf
+" https://github.com/mattn/emmet-vim
 
 call plug#end()            " required
 filetype plugin indent on    " required
@@ -216,6 +218,26 @@ nnoremap <silent> <leader>j  :<C-u>CocNext<CR>
 nnoremap <silent> <leader>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>
+
+"""""""""""""""""""""""""""""""""
+"	0.3 vim-session
+"""""""""""""""""""""""""""""""""
+
+" Don't save hidden and unloaded buffers in sessions.
+set sessionoptions-=buffers
+
+" Don't persist options and mappings because it can corrupt sessions.
+set sessionoptions-=options
+
+" Autosave
+let g:session_autosave_periodic=5
+let g:session_autosave_silent=0
+let g:session_autosave=0
+
+" Open a default session automatically when vim starts up if no files were specified
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | OpenSession | endif
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	1. General
