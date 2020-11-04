@@ -104,6 +104,7 @@ export MANPATH="/usr/local/man:$MANPATH"
 alias fuck="sudo !!" 
 
 alias pip="pip3"
+alias python="python3"
 alias vim="nvim" 
 alias q="exit" 
 alias :q="exit"
