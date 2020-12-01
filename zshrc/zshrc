@@ -103,11 +103,13 @@ export MANPATH="/usr/local/man:$MANPATH"
 # 
 alias fuck="sudo !!" 
 
+alias pip="pip3"
+alias python="python3"
 alias vim="nvim" 
 alias q="exit" 
 alias :q="exit"
 
-alias doco="docker-compose"
+alias doco="ddocker ocker-compose"
 alias doki="docker kill $(docker ps -q)"
 
 alias youtube-wav="youtube-dl -x --audio-format wav"
