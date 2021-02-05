@@ -239,6 +239,20 @@ let g:session_autosave=0
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | OpenSession | endif
 
 
+"""""""""""""""""""""""""""""""""
+"	0.4 FZF
+"""""""""""""""""""""""""""""""""
+
+" Search in code
+nnoremap <leader>fd :Rg<CR>
+
+" Search file
+nnoremap <leader>fi :Files<CR>
+
+" Search buffer
+nnoremap <leader>fb :Buffers<CR>
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	1. General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
