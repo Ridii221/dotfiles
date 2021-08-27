@@ -154,7 +154,7 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>rr <Plug>(coc-rename)
 
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
@@ -297,8 +297,13 @@ nnoremap <leader>p "+p
 " Close 
 nnoremap <leader>q :q<cr>
 
+" Paste don't yank in normal
+xnoremap p "_dP
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Quick use @q makro
+nnoremap <leader>h :normal @q<cr>
+
+"""""""""|""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	2. Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
