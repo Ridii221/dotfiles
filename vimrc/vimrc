@@ -29,11 +29,15 @@ let mapleader = " "
 
 call plug#begin(stdpath('data') . '/plugged')
 
-" Basic
+" Theme
 Plug 'iCyMind/NeoSolarized'
+Plug 'dracula/vim', { 'as': 'dracula' }
+
+" Basic
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
 Plug 'sheerun/vim-polyglot'
+Plug 'fladson/vim-kitty'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
@@ -316,9 +320,10 @@ set t_Co=256
 set background=dark
 
 " Colorscheme
-let g:neosolarized_contrast = "high"
-let g:neosolarized_visibility = "high"
-colorscheme NeoSolarized
+" let g:neosolarized_contrast = "high"
+" let g:neosolarized_visibility = "high"
+" colorscheme NeoSolarized
+colorscheme dracula
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -557,7 +562,7 @@ set noshowmode
 """""""""""""""""""""""""""""""""
 
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'dracula',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
@@ -591,4 +596,7 @@ set noswapfile
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><ESC> :noh<cr>
+
+map <leader>C :tabe ~/.vimrc<cr>
+map <leader>CC :so ~/.vimrc<cr>
 
