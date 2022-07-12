@@ -6,19 +6,12 @@
 "	1. General
 "	2. Colors, Fonts
 "	3. Tabs / Windows / Buffers
-"	4. VIM UI
-"	5. Text formating
-"	6. Movement mappings
-"	7. Editing mappings
-"	8. Status and tab line
-"	9. Misc
+"	4. Text formating
+"	5. Editing mappings
+"	6. Status and tab line
 "
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Map space to leader
-let maplocalleader = " "
-let mapleader = " "
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	0. Plugins
@@ -53,24 +46,15 @@ Plug 'junegunn/fzf.vim'
 
 " Autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Run after installation
 
 " JavaScript
-Plug 'pangloss/vim-javascript'
-Plug 'chemzqm/vim-jsx-improve'
+" Plug 'pangloss/vim-javascript'
+" Plug 'chemzqm/vim-jsx-improve'
 " Plug 'leafgarland/typescript-vim'
 " Plug 'ianks/vim-tsx'
-"
-" todo
-" https://github.com/terryma/vim-multiple-cursors
-" https://github.com/romainl/vim-qf
-" https://github.com/mattn/emmet-vim
 
 call plug#end()            " required
 filetype plugin indent on    " required
-
-" Coc.nvim plugins
-" CocInstall coc-tsserver coc-json coc-pairs coc-highlight coc-html coc-css
 
 """""""""""""""""""""""""""""""""
 "	0.1 NERDTree
@@ -109,9 +93,11 @@ let g:NERDTreeMapToggleHidden = "."
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 
+" Coc.nvim plugins
+" CocInstall coc-tsserver coc-json coc-pairs coc-highlight coc-html coc-css
+
 let g:coc_disable_startup_warning = 1
 
-" other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -240,11 +226,6 @@ let g:session_autosave_periodic=5
 let g:session_autosave_silent=0
 let g:session_autosave=0
 
-" Open a default session automatically when vim starts up if no files were specified
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | OpenSession | endif
-
-
 """""""""""""""""""""""""""""""""
 "	0.4 FZF
 """""""""""""""""""""""""""""""""
@@ -258,10 +239,13 @@ nnoremap <leader>fi :Files<CR>
 " Search buffer
 nnoremap <leader>fb :Buffers<CR>
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	1. General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Map space to leader
+let maplocalleader = " "
+let mapleader = " "
 
 " mouse
 set mouse=a
@@ -274,6 +258,9 @@ set number
 set relativenumber
 set hidden
 set signcolumn=auto
+
+" Ignore case when searching
+set ignorecase
 
 " Sets how many lines of history VIM has to remember
 set history=500
@@ -296,121 +283,8 @@ nmap <leader>s :w!<cr>
 nnoremap <leader>y "+yy
 nnoremap <leader>p "+p
 
-" :W sudo saves the file 
-" (useful for handling the permission-denied error)
-" command W w !sudo tee % > /dev/null
-
 " Close 
 nnoremap <leader>q :q<cr>
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	2. Colors and Fonts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Set guicolors
-set termguicolors
-
-" Enable syntax highlighting
-syntax enable 
-
-" Enable 256 colors 
-set t_Co=256
-
-set background=dark
-
-" Colorscheme
-" let g:neosolarized_contrast = "high"
-" let g:neosolarized_visibility = "high"
-" colorscheme NeoSolarized
-colorscheme dracula
-
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
-
-" Use Unix as the standard file type
-set ffs=unix,dos,mac
-
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	3. Tabs / Windows / Buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-nnoremap T <C-W>T
-nnoremap tt :tabe<CR>
-
-" Move between tabs
-map [t gT
-map ]t gt
-
-" Move between windows
-map [w <C-W>W
-map ]w <C-W>w
-
-" Move between buffers
-map [b :bprevious<cr>
-map ]b :bnext<cr>
-
-
-"
-" Tabs
-"
-" Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
-
-" Open all buffers in tabs
-map <leader>ta :tab sball<cr>
-
-" toggle between this and the last accessed tab
-let g:lasttab = 1
-nmap <Leader><TAB> :exe "tabn ".g:lasttab<CR>
-
-
-
-au TabLeave * let g:lasttab = tabpagenr()
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-
-"
-" Windows
-"
-nnoremap <leader>wt <C-W>T
-nnoremap <leader>wo <C-W>o
-nnoremap <leader>wh <C-W>_
-nnoremap <leader>wl <C-W>\|
-nnoremap <leader>ww <C-W>=
-
-
-
-"
-" Buffers
-"
-" todo
-" close buffer
-" close all without active
-"
-" Close the current buffer
-" map <leader>bc :Bclose<cr>:tabclose<cr>gT
-
-" Close all the buffers
-" map <leader>bd :bufdo bd<cr>
-
-
-" Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers 
 set switchbuf=useopen,usetab,newtab
@@ -418,10 +292,22 @@ set switchbuf=useopen,usetab,newtab
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+set clipboard+=unnamedplus
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	4. VIM UI
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Toggle paste mode on and off
+set pastetoggle=<F2>
+
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowb
+set noswapfile
+
+" Disable highlight when <leader><cr> is pressed
+map <silent> <leader><ESC> :noh<cr>
+
+" edit and load .vimrc
+map <leader>C :tabe ~/.vimrc<cr>
+map <leader>CC :so ~/.vimrc<cr>
 
 " Set 7 lines to the cursor - when moving vertically using j/k
 set so=7
@@ -433,7 +319,7 @@ set wildmenu
 set ruler
 
 " Height of the command bar
-set cmdheight=2
+set cmdheight=1
 
 " A buffer becomes hidden when it is abandoned
 set hid
@@ -441,9 +327,6 @@ set hid
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
-
-" Ignore case when searching
-set ignorecase
 
 " When searching try to be smart about cases 
 set smartcase
@@ -474,9 +357,83 @@ set tm=500
 " Add a bit extra margin to the left
 set foldcolumn=1
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"	2. Colors and Fonts
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Set guicolors
+set termguicolors
+
+" Enable syntax highlighting
+syntax enable 
+
+" Enable 256 colors 
+set t_Co=256
+
+set background=dark
+
+" Colorscheme
+" let g:neosolarized_contrast = "high"
+" let g:neosolarized_visibility = "high"
+" colorscheme NeoSolarized
+colorscheme dracula
+
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+
+" Use Unix as the standard file type
+set ffs=unix,dos,mac
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	5. Text formating
+"	3. Tabs / Windows / Buffers
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+nnoremap T <C-W>T
+nnoremap tt :tabe<CR>
+
+" Move between tabs
+map [t gT
+map ]t gt
+
+" Move between windows
+map [w <C-W>W
+map ]w <C-W>w
+
+" Move between buffers
+map [b :bprevious<cr>
+map ]b :bnext<cr>
+
+" Useful mappings for managing tabs
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove 
+
+" toggle between this and the last accessed tab
+let g:lasttab = 1
+nmap <Leader><TAB> :exe "tabn ".g:lasttab<CR>
+
+au TabLeave * let g:lasttab = tabpagenr()
+
+nnoremap <leader>wt <C-W>T
+nnoremap <leader>wo <C-W>o
+nnoremap <leader>wh <C-W>_
+nnoremap <leader>wl <C-W>\|
+nnoremap <leader>ww <C-W>=
+
+" Switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"	4. Text formating
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " 1 tab == 4 spaces
@@ -486,50 +443,19 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 set lbr
 set tw=500
 
-set ai "Auto indent
-set si "Smart indent
-set nowrap "Wrap lines
+" Auto indent
+set ai 
+" Smart indent
+set si 
+" No wrap lines
+set nowrap
 
 autocmd FileType scss setl iskeyword+=@-@
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	6. Movement mappings
+"	5. Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""
-"	From CoC plugin
-"""""""""""""""""""""""""""""""""
-"
-" GoTo code navigation.
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-"
-"""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""
-"	Vim default refrence
-"""""""""""""""""""""""""""""""""
-"
-" :he jump-motions
-"
-"""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	7. Editing mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Auto closing
-" inoremap ' ''<left>
-" inoremap ( ()<left>
-" inoremap (; ();<ESC>o
-" inoremap [ []<left>
-" inoremap { {}<left>
-" todo
-" open brakets in new line
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
@@ -541,26 +467,14 @@ noremap H ^
 " L to move to the last character in a line
 noremap L g_
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	8. Status and tab line
+"	6. Status and tab line
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Always show the tab line
 set stal=2
 
-" Always show the status line
-set laststatus=2
-
-set noshowmode
-
-" Format the status line
-" set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-
-"""""""""""""""""""""""""""""""""
-" 	From lightline
-"""""""""""""""""""""""""""""""""
-
+" lightline
 let g:lightline = {
       \ 'colorscheme': 'dracula',
       \ 'active': {
@@ -572,31 +486,3 @@ let g:lightline = {
       \   'cocstatus': 'coc#status'
       \ },
       \ }
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	9. Misc
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""
-"	9.1 Clipboard
-"""""""""""""""""""""""""""""""""
-
-set clipboard+=unnamedplus
-
-"""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""
-
-" Toggle paste mode on and off
-set pastetoggle=<F2>
-
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
-set nobackup
-set nowb
-set noswapfile
-
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><ESC> :noh<cr>
-
-map <leader>C :tabe ~/.vimrc<cr>
-map <leader>CC :so ~/.vimrc<cr>
-
