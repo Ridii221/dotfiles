@@ -4,7 +4,7 @@
 "	Table of content
 "	0. Plugins
 "	1. General
-"	2. Colors, Fonts
+"	2. Colors, fonts and looks
 "	3. Tabs / Windows / Buffers
 "	4. Text formating
 "	5. Editing mappings
@@ -38,23 +38,16 @@ Plug 'xolox/vim-session'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " requires 
 " https://github.com/sharkdp/bat
 " https://github.com/BurntSushi/ripgrep
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" JavaScript
-" Plug 'pangloss/vim-javascript'
-" Plug 'chemzqm/vim-jsx-improve'
-" Plug 'leafgarland/typescript-vim'
-" Plug 'ianks/vim-tsx'
-
-call plug#end()            " required
-filetype plugin indent on    " required
+call plug#end()
 
 """""""""""""""""""""""""""""""""
 "	0.1 NERDTree
@@ -94,7 +87,7 @@ let g:NERDTreeMapToggleHidden = "."
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 
 " Coc.nvim plugins
-" CocInstall coc-tsserver coc-json coc-pairs coc-highlight coc-html coc-css
+" CocInstall coc-tsserver coc-json coc-pairs coc-highlight coc-html coc-css coc-spell-checker
 
 let g:coc_disable_startup_warning = 1
 
@@ -146,10 +139,12 @@ endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+nmap <leader>rr <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>f <Plug>(coc-format-selected)
+
+nmap <leader>ff <Plug>(coc-format)
 
 augroup mygroup
   autocmd!
@@ -247,60 +242,17 @@ nnoremap <leader>fb :Buffers<CR>
 let maplocalleader = " "
 let mapleader = " "
 
-" mouse
-set mouse=a
-
-" Don't pass mesages to |ins-completion-menu|.
-set shortmess+=c
-
-" Set line number
-set number
-set relativenumber
-set hidden
-set signcolumn=auto
-
-" Ignore case when searching
-set ignorecase
-
-" Sets how many lines of history VIM has to remember
-set history=500
-
-set updatetime=300
-
-set nocompatible              " be iMproved, required
-
-" Enable filetype plugins
-" filetype indent on
-filetype off                  " required for vundle
-
-" Set to auto read when a file is changed from the outside
-set autoread
+filetype on
+set mouse=a number relativenumber hidden signcolumn=auto ignorecase history=500 updatetime=300 autoread clipboard+=unnamedplus nobackup nowb history=500 so=7 wildmenu cmdheight=1 hid smartcase hlsearch incsearch lazyredraw magic showmatch mat=2 noerrorbells novisualbell tm=500 foldcolumn=1 shortmess+=c t_vb= backspace=eol,start,indent switchbuf=useopen,usetab,newtab whichwrap+=<,>,h,l
 
 " Fast saving
 nmap <leader>s :w!<cr>
 
-" Global copy/paste maps
-nnoremap <leader>y "+yy
-nnoremap <leader>p "+p
-
 " Close 
 nnoremap <leader>q :q<cr>
 
-" Specify the behavior when switching between buffers 
-set switchbuf=useopen,usetab,newtab
-
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-set clipboard+=unnamedplus
-
-" Toggle paste mode on and off
-set pastetoggle=<F2>
-
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
-set nobackup
-set nowb
-set noswapfile
 
 " Disable highlight when <leader><cr> is pressed
 map <silent> <leader><ESC> :noh<cr>
@@ -308,54 +260,6 @@ map <silent> <leader><ESC> :noh<cr>
 " edit and load .vimrc
 map <leader>C :tabe ~/.vimrc<cr>
 map <leader>CC :so ~/.vimrc<cr>
-
-" Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
-
-" Turn on the Wild menu
-set wildmenu
-
-"Always show current position
-set ruler
-
-" Height of the command bar
-set cmdheight=1
-
-" A buffer becomes hidden when it is abandoned
-set hid
-
-" Configure backspace so it acts as it should act
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
-
-" When searching try to be smart about cases 
-set smartcase
-
-" Highlight search results
-set hlsearch
-
-" Makes search act like search in modern browsers
-set incsearch 
-
-" Don't redraw while executing macros (good performance config)
-set lazyredraw 
-
-" For regular expressions turn magic on
-set magic
-
-" Show matching brackets when text indicator is over them
-set showmatch 
-" How many tenths of a second to blink when matching brackets
-set mat=2
-
-" No annoying sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
-
-" Add a bit extra margin to the left
-set foldcolumn=1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	2. Colors and Fonts
@@ -386,91 +290,6 @@ set ffs=unix,dos,mac
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	3. Tabs / Windows / Buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-nnoremap T <C-W>T
-nnoremap tt :tabe<CR>
-
-" Move between tabs
-map [t gT
-map ]t gt
-
-" Move between windows
-map [w <C-W>W
-map ]w <C-W>w
-
-" Move between buffers
-map [b :bprevious<cr>
-map ]b :bnext<cr>
-
-" Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
-
-" toggle between this and the last accessed tab
-let g:lasttab = 1
-nmap <Leader><TAB> :exe "tabn ".g:lasttab<CR>
-
-au TabLeave * let g:lasttab = tabpagenr()
-
-nnoremap <leader>wt <C-W>T
-nnoremap <leader>wo <C-W>o
-nnoremap <leader>wh <C-W>_
-nnoremap <leader>wl <C-W>\|
-nnoremap <leader>ww <C-W>=
-
-" Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	4. Text formating
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" 1 tab == 4 spaces
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
-" Auto indent
-set ai 
-" Smart indent
-set si 
-" No wrap lines
-set nowrap
-
-autocmd FileType scss setl iskeyword+=@-@
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	5. Editing mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
-
-" Fast closing semicolon
-" inoremap ; <C-o>:call setline('.', getline('.') . ';')<CR>
-
-" H to move to the first character in a line
-noremap H ^
-" L to move to the last character in a line
-noremap L g_
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	6. Status and tab line
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Always show the tab line
 set stal=2
 
@@ -486,3 +305,64 @@ let g:lightline = {
       \   'cocstatus': 'coc#status'
       \ },
       \ }
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"	3. Tabs / Windows / Buffers
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+
+" Move between tabs
+map [t gT
+map ]t gt
+
+" Useful mappings for managing tabs
+nnoremap T <C-W>T
+nmap <leader>tn :tabnew<cr>
+nmap <leader>to :tabonly<cr>
+nmap <leader>tc :tabclose<cr>
+
+" toggle between this and the last accessed tab
+let g:lasttab = 1
+nmap <Leader><TAB> :exe "tabn ".g:lasttab<CR>
+
+au TabLeave * let g:lasttab = tabpagenr()
+
+nnoremap <leader>wt <C-W>T
+nnoremap <leader>wo <C-W>o
+
+" Switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"	4. Text formating
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab
+
+" autocmd FileType python setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType scss setlocal iskeyword+=@-@
+
+" Linebreak on 500 characters
+set lbr
+set tw=500
+
+" Auto indent
+set ai 
+" Smart indent
+set si 
+" No wrap lines
+set nowrap
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"	5. Editing mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" H to move to the first character in a line
+noremap H ^
+" L to move to the last character in a line
+noremap L g_
