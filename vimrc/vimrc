@@ -59,7 +59,10 @@ map <C-n> :NERDTreeToggle<CR>
 " Find current file in tree
 nnoremap <leader>ff :NERDTreeFind %<CR>
 
-" NERDTree ui"
+" reopen NERDTree
+nmap FF :NERDTree <CR>
+
+" NERDTree ui
 let g:NERDTreeMinimalUI = 1
 
 " Open a NERDTree automatically when vim starts up if no files were specified
@@ -69,7 +72,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" NERTree on the right
+" NERDTree on the left
 let g:NERDTreeWinPos = "left"
 
 " Open and close node with l and h"
