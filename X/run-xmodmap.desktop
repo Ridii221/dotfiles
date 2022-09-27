@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=xmodmap
-GenericName=Xmodmap
-Comment=Not a game.
-Terminal=true
-Exec=xmodmap /home/xmichalx/.Xmodmap
-Categories=Exe;

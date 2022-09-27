@@ -9,4 +9,5 @@
 [difftool "kitty.gui"]
     cmd = kitty kitty +kitten diff $LOCAL $REMOTE
 [user]
-	email = piechureq@wp.pl
+	# name = 
+	# email = 

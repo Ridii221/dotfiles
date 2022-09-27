@@ -4,21 +4,14 @@
 "	Table of content
 "	0. Plugins
 "	1. General
-"	2. Colors, Fonts
+"	2. Colors, fonts and looks
 "	3. Tabs / Windows / Buffers
-"	4. VIM UI
-"	5. Text formating
-"	6. Movement mappings
-"	7. Editing mappings
-"	8. Status and tab line
-"	9. Misc
+"	4. Text formating
+"	5. Editing mappings
+"	6. Status and tab line
 "
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Map space to leader
-let maplocalleader = " "
-let mapleader = " "
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	0. Plugins
@@ -29,11 +22,15 @@ let mapleader = " "
 
 call plug#begin(stdpath('data') . '/plugged')
 
-" Basic
+" Theme
 Plug 'iCyMind/NeoSolarized'
+Plug 'dracula/vim', { 'as': 'dracula' }
+
+" Basic
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
 Plug 'sheerun/vim-polyglot'
+Plug 'fladson/vim-kitty'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 
@@ -41,32 +38,16 @@ Plug 'xolox/vim-session'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " requires 
 " https://github.com/sharkdp/bat
 " https://github.com/BurntSushi/ripgrep
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Run after installation
 
-" JavaScript
-Plug 'pangloss/vim-javascript'
-Plug 'chemzqm/vim-jsx-improve'
-" Plug 'leafgarland/typescript-vim'
-" Plug 'ianks/vim-tsx'
-"
-" todo
-" https://github.com/terryma/vim-multiple-cursors
-" https://github.com/romainl/vim-qf
-" https://github.com/mattn/emmet-vim
-
-call plug#end()            " required
-filetype plugin indent on    " required
-
-" Coc.nvim plugins
-" CocInstall coc-tsserver coc-json coc-pairs coc-highlight coc-html coc-css
+call plug#end()
 
 """""""""""""""""""""""""""""""""
 "	0.1 NERDTree
@@ -78,7 +59,10 @@ map <C-n> :NERDTreeToggle<CR>
 " Find current file in tree
 nnoremap <leader>ff :NERDTreeFind %<CR>
 
-" NERDTree ui"
+" reopen NERDTree
+nmap FF :NERDTree <CR>
+
+" NERDTree ui
 let g:NERDTreeMinimalUI = 1
 
 " Open a NERDTree automatically when vim starts up if no files were specified
@@ -88,7 +72,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" NERTree on the right
+" NERDTree on the left
 let g:NERDTreeWinPos = "left"
 
 " Open and close node with l and h"
@@ -105,9 +89,11 @@ let g:NERDTreeMapToggleHidden = "."
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 
+" Coc.nvim plugins
+" CocInstall coc-tsserver coc-json coc-pairs coc-highlight coc-html coc-css coc-spell-checker
+
 let g:coc_disable_startup_warning = 1
 
-" other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
@@ -159,7 +145,9 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rr <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>f <Plug>(coc-format-selected)
+
+nmap <leader>ff <Plug>(coc-format)
 
 augroup mygroup
   autocmd!
@@ -236,11 +224,6 @@ let g:session_autosave_periodic=5
 let g:session_autosave_silent=0
 let g:session_autosave=0
 
-" Open a default session automatically when vim starts up if no files were specified
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | OpenSession | endif
-
-
 """""""""""""""""""""""""""""""""
 "	0.4 FZF
 """""""""""""""""""""""""""""""""
@@ -254,47 +237,19 @@ nnoremap <leader>fi :Files<CR>
 " Search buffer
 nnoremap <leader>fb :Buffers<CR>
 
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	1. General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" mouse
-set mouse=a
+" Map space to leader
+let maplocalleader = " "
+let mapleader = " "
 
-" Don't pass mesages to |ins-completion-menu|.
-set shortmess+=c
-
-" Set line number
-set number
-set relativenumber
-set hidden
-set signcolumn=auto
-
-" Sets how many lines of history VIM has to remember
-set history=500
-
-set updatetime=300
-
-set nocompatible              " be iMproved, required
-
-" Enable filetype plugins
-" filetype indent on
-filetype off                  " required for vundle
-
-" Set to auto read when a file is changed from the outside
-set autoread
+filetype on
+set mouse=a number relativenumber hidden signcolumn=auto ignorecase history=500 updatetime=300 autoread clipboard+=unnamedplus nobackup nowb history=500 so=7 wildmenu cmdheight=1 hid smartcase hlsearch incsearch lazyredraw magic showmatch mat=2 noerrorbells novisualbell tm=500 foldcolumn=1 shortmess+=c t_vb= backspace=eol,start,indent switchbuf=useopen,usetab,newtab whichwrap+=<,>,h,l
 
 " Fast saving
 nmap <leader>s :w!<cr>
-
-" Global copy/paste maps
-nnoremap <leader>y "+yy
-nnoremap <leader>p "+p
-
-" :W sudo saves the file 
-" (useful for handling the permission-denied error)
-" command W w !sudo tee % > /dev/null
 
 " Close 
 nnoremap <leader>q :q<cr>
@@ -302,10 +257,20 @@ nnoremap <leader>q :q<cr>
 " Paste don't yank in normal
 xnoremap p "_dP
 
+" Return to last edit position when opening files (You want this!)
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+" Disable highlight when <leader><cr> is pressed
+map <silent> <leader><ESC> :noh<cr>
+
+" edit and load .vimrc
+map <leader>C :tabe ~/.vimrc<cr>
+map <leader>CC :so ~/.vimrc<cr>
+
 " Quick use @q makro
 nnoremap <leader>h :normal @q<cr>
 
-"""""""""|""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	2. Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
@@ -321,9 +286,10 @@ set t_Co=256
 set background=dark
 
 " Colorscheme
-let g:neosolarized_contrast = "high"
-let g:neosolarized_visibility = "high"
-colorscheme NeoSolarized
+" let g:neosolarized_contrast = "high"
+" let g:neosolarized_visibility = "high"
+" colorscheme NeoSolarized
+colorscheme dracula
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -333,236 +299,12 @@ set ffs=unix,dos,mac
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	3. Tabs / Windows / Buffers
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-
-nnoremap T <C-W>T
-nnoremap tt :tabe<CR>
-
-" Move between tabs
-map [t gT
-map ]t gt
-
-" Move between windows
-map [w <C-W>W
-map ]w <C-W>w
-
-" Move between buffers
-map [b :bprevious<cr>
-map ]b :bnext<cr>
-
-
-"
-" Tabs
-"
-" Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove 
-
-" Open all buffers in tabs
-map <leader>ta :tab sball<cr>
-
-" toggle between this and the last accessed tab
-let g:lasttab = 1
-nmap <Leader><TAB> :exe "tabn ".g:lasttab<CR>
-
-
-
-au TabLeave * let g:lasttab = tabpagenr()
-
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
-
-"
-" Windows
-"
-nnoremap <leader>wt <C-W>T
-nnoremap <leader>wo <C-W>o
-nnoremap <leader>wh <C-W>_
-nnoremap <leader>wl <C-W>\|
-nnoremap <leader>ww <C-W>=
-
-
-
-"
-" Buffers
-"
-" todo
-" close buffer
-" close all without active
-"
-" Close the current buffer
-" map <leader>bc :Bclose<cr>:tabclose<cr>gT
-
-" Close all the buffers
-" map <leader>bd :bufdo bd<cr>
-
-
-" Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
-
-" Specify the behavior when switching between buffers 
-set switchbuf=useopen,usetab,newtab
-
-" Return to last edit position when opening files (You want this!)
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	4. VIM UI
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Set 7 lines to the cursor - when moving vertically using j/k
-set so=7
-
-" Turn on the Wild menu
-set wildmenu
-
-"Always show current position
-set ruler
-
-" Height of the command bar
-set cmdheight=2
-
-" A buffer becomes hidden when it is abandoned
-set hid
-
-" Configure backspace so it acts as it should act
-set backspace=eol,start,indent
-set whichwrap+=<,>,h,l
-
-" Ignore case when searching
-set ignorecase
-
-" When searching try to be smart about cases 
-set smartcase
-
-" Highlight search results
-set hlsearch
-
-" Makes search act like search in modern browsers
-set incsearch 
-
-" Don't redraw while executing macros (good performance config)
-set lazyredraw 
-
-" For regular expressions turn magic on
-set magic
-
-" Show matching brackets when text indicator is over them
-set showmatch 
-" How many tenths of a second to blink when matching brackets
-set mat=2
-
-" No annoying sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
-
-" Add a bit extra margin to the left
-set foldcolumn=1
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	5. Text formating
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" 1 tab == 4 spaces
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
-set ai "Auto indent
-set si "Smart indent
-set nowrap "Wrap lines
-
-autocmd FileType scss setl iskeyword+=@-@
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	6. Movement mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""
-"	From CoC plugin
-"""""""""""""""""""""""""""""""""
-"
-" GoTo code navigation.
-" nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gy <Plug>(coc-type-definition)
-" nmap <silent> gi <Plug>(coc-implementation)
-" nmap <silent> gr <Plug>(coc-references)
-"
-"""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""
-"	Vim default refrence
-"""""""""""""""""""""""""""""""""
-"
-" :he jump-motions
-"
-"""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	7. Editing mappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Auto closing
-" inoremap ' ''<left>
-" inoremap ( ()<left>
-" inoremap (; ();<ESC>o
-" inoremap [ []<left>
-" inoremap { {}<left>
-" todo
-" open brakets in new line
-inoremap {<CR> {<CR>}<ESC>O
-inoremap {;<CR> {<CR>};<ESC>O
-
-" Fast closing semicolon
-" inoremap ; <C-o>:call setline('.', getline('.') . ';')<CR>
-
-" H to move to the first character in a line
-noremap H ^
-" L to move to the last character in a line
-noremap L g_
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	8. Status and tab line
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 " Always show the tab line
 set stal=2
 
-" Always show the status line
-set laststatus=2
-
-set noshowmode
-
-" Format the status line
-" set statusline=\ %F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
-
-"""""""""""""""""""""""""""""""""
-" 	From lightline
-"""""""""""""""""""""""""""""""""
-
+" lightline
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
+      \ 'colorscheme': 'dracula',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
@@ -574,26 +316,62 @@ let g:lightline = {
       \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	9. Misc
+"	3. Tabs / Windows / Buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"""""""""""""""""""""""""""""""""
-"	9.1 Clipboard
-"""""""""""""""""""""""""""""""""
+" Smart way to move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
-set clipboard+=unnamedplus
+" Move between tabs
+map [t gT
+map ]t gt
 
-"""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""
+" Useful mappings for managing tabs
+nnoremap T <C-W>T
+nmap <leader>tn :tabnew<cr>
+nmap <leader>to :tabonly<cr>
+nmap <leader>tc :tabclose<cr>
 
-" Toggle paste mode on and off
-set pastetoggle=<F2>
+" toggle between this and the last accessed tab
+let g:lasttab = 1
+nmap <Leader><TAB> :exe "tabn ".g:lasttab<CR>
 
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
-set nobackup
-set nowb
-set noswapfile
+au TabLeave * let g:lasttab = tabpagenr()
 
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><ESC> :noh<cr>
+nnoremap <leader>wt <C-W>T
+nnoremap <leader>wo <C-W>o
 
+" Switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"	4. Text formating
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab
+
+" autocmd FileType python setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType scss setlocal iskeyword+=@-@
+
+" Linebreak on 500 characters
+set lbr
+set tw=500
+
+" Auto indent
+set ai 
+" Smart indent
+set si 
+" No wrap lines
+set nowrap
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"	5. Editing mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" H to move to the first character in a line
+noremap H ^
+" L to move to the last character in a line
+noremap L g_
