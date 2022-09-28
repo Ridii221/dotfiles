@@ -5,9 +5,8 @@
 "	1. General
 "	2. Colors, fonts and looks
 "	3. Tabs / Windows / Buffers
-"	4. Text formating
-"	5. Editing mappings
-"	6. Plugins configs
+"	4. Editing mappings
+"	5. Plugins configs
 "
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -26,17 +25,23 @@ Plug 'iCyMind/NeoSolarized'
 Plug 'dracula/vim', { 'as': 'dracula' }
 
 " Basic
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'ap/vim-css-color'
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
 Plug 'sheerun/vim-polyglot'
 Plug 'fladson/vim-kitty'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
-Plug 'thaerkh/vim-indentguides'
+Plug 'easymotion/vim-easymotion'
 
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tommcdo/vim-fubitive'
 
 " requires 
 " https://github.com/sharkdp/bat
@@ -45,7 +50,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Autocompletion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-tsserver coc-pyright coc-html coc-css coc-json coc-prettier coc-pairs coc-highlight coc-spell-checker'}
 
 call plug#end()
 
@@ -58,13 +63,18 @@ let maplocalleader = " "
 let mapleader = " "
 
 filetype on
-set mouse=a number relativenumber hidden signcolumn=yes ignorecase history=500 updatetime=300 autoread clipboard+=unnamedplus nobackup nowb history=500 so=7 wildmenu cmdheight=1 hid smartcase hlsearch incsearch lazyredraw magic showmatch mat=2 noerrorbells novisualbell tm=500 foldcolumn=1 shortmess+=c t_vb= backspace=eol,start,indent switchbuf=useopen,usetab,newtab whichwrap+=<,>,h,l
+set mouse=a number relativenumber hidden signcolumn=yes ignorecase history=500 updatetime=300 autoread clipboard+=unnamedplus nobackup nowb history=500 so=7 wildmenu cmdheight=1 hid smartcase hlsearch incsearch lazyredraw magic showmatch mat=2 noerrorbells novisualbell tm=500 foldcolumn=1 shortmess+=c t_vb= backspace=eol,start,indent switchbuf=useopen,usetab,newtab whichwrap+=<,>,h,l lbr tw=500 ai si nowrap
 
 " Close 
 nnoremap <leader>q :q<cr>
 
 " Paste don't yank in normal
 xnoremap p "_dP
+
+" set tabs
+set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab 
+" autocmd FileType scss setlocal tabstop=2 softtabstop=2 shiftwidth=2
+autocmd FileType scss setlocal iskeyword+=@-@
 
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
@@ -82,23 +92,14 @@ nnoremap <leader>h :normal @q<cr>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	2. Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Set guicolors
-set termguicolors
-
-" Enable syntax highlighting
-syntax enable 
-
-" Enable 256 colors 
-set t_Co=256
-
-set background=dark
-
 " Colorscheme
 " let g:neosolarized_contrast = "high"
 " let g:neosolarized_visibility = "high"
 " colorscheme NeoSolarized
 colorscheme dracula
+
+" Set guicolors
+set termguicolors
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
@@ -155,27 +156,7 @@ nnoremap <leader>wo <C-W>o
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	4. Text formating
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab
-
-" autocmd FileType python setlocal tabstop=2 softtabstop=2 shiftwidth=2
-autocmd FileType scss setlocal iskeyword+=@-@
-
-" Linebreak on 500 characters
-set lbr
-set tw=500
-
-" Auto indent
-set ai 
-" Smart indent
-set si 
-" No wrap lines
-set nowrap
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	5. Editing mappings
+"	4. Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " H to move to the first character in a line
@@ -184,8 +165,10 @@ noremap H ^
 noremap L g_
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	6. Plugins configs
+"	5. Plugins configs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
 
 """""""""""""""""""""""""""""""""
 "	NERDTree
@@ -224,9 +207,6 @@ let g:NERDTreeMapToggleHidden = "."
 """""""""""""""""""""""""""""""""
 "	CoC
 """""""""""""""""""""""""""""""""
-" Coc.nvim plugins
-" CocInstall coc-tsserver coc-json coc-pairs coc-highlight coc-html coc-css coc-spell-checker
-
 let g:coc_disable_startup_warning = 1
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -356,16 +336,20 @@ nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>
 "	vim-session
 """""""""""""""""""""""""""""""""
 
+nnoremap <leader>o :OpenSession<cr>
+
 " Don't save hidden and unloaded buffers in sessions.
 set sessionoptions-=buffers
 
 " Don't persist options and mappings because it can corrupt sessions.
 set sessionoptions-=options
 
+let g:session_default_overwrite = 1
+
 " Autosave
 let g:session_autosave_periodic=5
-let g:session_autosave_silent=0
-let g:session_autosave=0
+let g:session_autosave_silent=1
+let g:session_autosave='yes'
 
 """""""""""""""""""""""""""""""""
 "	0.4 FZF
@@ -379,4 +363,7 @@ nnoremap <leader>fi :Files<CR>
 
 " Search buffer
 nnoremap <leader>fb :Buffers<CR>
+
+" Search git status
+nnoremap <leader>fc :GFiles?<CR>
 
