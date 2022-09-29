@@ -28,7 +28,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'ap/vim-css-color'
-Plug 'nathanaelkane/vim-indent-guides'
+Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'itchyny/lightline.vim'
 Plug 'preservim/nerdtree'
 Plug 'sheerun/vim-polyglot'
@@ -36,6 +36,11 @@ Plug 'fladson/vim-kitty'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'easymotion/vim-easymotion'
+
+" Snippets
+Plug 'SirVer/ultisnips'
+" Snippets are separated from the engine.
+Plug 'honza/vim-snippets'
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -50,7 +55,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " Autocompletion
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-tsserver coc-pyright coc-html coc-css coc-json coc-prettier coc-pairs coc-highlight coc-spell-checker'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-tsserver coc-pyright coc-html coc-css coc-json coc-prettier coc-pairs coc-highlight coc-spell-checker coc-snippets'}
 
 call plug#end()
 
@@ -167,8 +172,7 @@ noremap L g_
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "	5. Plugins configs
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
+let g:indentLine_char_list = ['▏']
 
 """""""""""""""""""""""""""""""""
 "	NERDTree
@@ -316,21 +320,35 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " Mappings using CoCList:
 " Show all diagnostics.
-nnoremap <silent> <leader>d  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <leader>d :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent> <leader>e  :<C-u>CocList extensions<cr>
+nnoremap <silent> <leader>e :<C-u>CocList extensions<cr>
 " Show commands.
-nnoremap <silent> <leader>c  :<C-u>CocList commands<cr>
+nnoremap <silent> <leader>c :<C-u>CocList commands<cr>
 " Find symbol of current document.
-nnoremap <silent> <leader>o  :<C-u>CocList outline<cr>
+nnoremap <silent> <leader>s :<C-u>CocList outline<cr>
+" Find snippets.
+nnoremap <silent> <leader>\ :<C-u>CocList snippets<cr>
 " Search workspace symbols.
-nnoremap <silent> <leader>s  :<C-u>CocList -I symbols<cr>
+" nnoremap <silent> <leader>s  :<C-u>CocList -I symbols<cr>
+
 " Do default action for next item.
-nnoremap <silent> <leader>j  :<C-u>CocNext<CR>
+nnoremap <silent> <leader>j :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent> <leader>k  :<C-u>CocPrev<CR>
+nnoremap <silent> <leader>k :<C-u>CocPrev<CR>
 " Resume latest coc list.
-nnoremap <silent> <leader>p  :<C-u>CocListResume<CR>
+nnoremap <silent> <leader>p :<C-u>CocListResume<CR>
+
+" coc-snippets
+
+" Use <leader>x for convert visual selected code to snippet
+xmap <leader>x <Plug>(coc-convert-snippet)
+
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
 
 """""""""""""""""""""""""""""""""
 "	vim-session
