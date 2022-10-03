@@ -36,6 +36,7 @@ Plug 'fladson/vim-kitty'
 Plug 'xolox/vim-misc'
 Plug 'xolox/vim-session'
 Plug 'easymotion/vim-easymotion'
+Plug 'ryanoasis/vim-devicons'
 
 " Snippets
 Plug 'SirVer/ultisnips'
@@ -355,6 +356,7 @@ let g:coc_snippet_prev = '<c-k>'
 """""""""""""""""""""""""""""""""
 
 nnoremap <leader>o :OpenSession<cr>
+nnoremap <leader>O :OpenSession!<cr>
 
 " Don't save hidden and unloaded buffers in sessions.
 set sessionoptions-=buffers
