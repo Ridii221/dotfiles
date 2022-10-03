@@ -7,10 +7,6 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git git-flow pip python node npm)
 source $ZSH/oh-my-zsh.sh
 
-function todo() {
-  vim $HOME/Dokumenty/todo/$1
-}
-
 # Aliases
 alias pip="pip3"
 alias python="python3"
@@ -27,3 +23,8 @@ export KITTY_CONFIG_DIRECTORY="$HOME/.config/kitty"
 autoload -Uz compinit
 compinit
 kitty + complete setup zsh | source /dev/stdin
+
+function todo() {
+  vim $HOME/Dokumenty/todo/$1
+}
+
