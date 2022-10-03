@@ -7,3 +7,9 @@ keymap('n', '<leader>q', ':q<cr>', {})
 keymap('n', '<leader>C', ':tabe $MYVIMRC<cr>', {})
 keymap('n', '<leader>CC', ':so $MYVIMRC<cr>', {})
 
+-- paste won't yank in normal
+keymap('x', 'p', '"_dP', {})
+
+-- hide highlight
+keymap('n', '<leader><esc>', ':noh<cr>', {})
+

@@ -64,28 +64,11 @@ call plug#end()
 "	1. General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-filetype on
-
-" Close 
-nnoremap <leader>q :q<cr>
-
-" Paste don't yank in normal
-xnoremap p "_dP
-
-" set tabs
-set tabstop=2 softtabstop=2 expandtab shiftwidth=2 smarttab 
 " autocmd FileType scss setlocal tabstop=2 softtabstop=2 shiftwidth=2
 autocmd FileType scss setlocal iskeyword+=@-@
 
 " Return to last edit position when opening files (You want this!)
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><ESC> :noh<cr>
-
-" edit and load .vimrc
-map <leader>C :tabe ~/.vimrc<cr>
-map <leader>CC :so ~/.vimrc<cr>
 
 " Quick use @q makro
 nnoremap <leader>h :normal @q<cr>
@@ -98,18 +81,6 @@ nnoremap <leader>h :normal @q<cr>
 " let g:neosolarized_visibility = "high"
 " colorscheme NeoSolarized
 colorscheme dracula
-
-" Set guicolors
-set termguicolors
-
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
-
-" Use Unix as the standard file type
-set ffs=unix,dos,mac
-
-" Always show the tab line
-set stal=2
 
 " lightline
 let g:lightline = {
