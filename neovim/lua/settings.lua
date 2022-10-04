@@ -3,6 +3,8 @@ local w = vim.wo
 local b = vim.bo
 local g = vim.g
 
+vim.cmd('colorscheme dracula')
+
 g.mapleader = ' '
 g.maplocalleader = ' '
 
