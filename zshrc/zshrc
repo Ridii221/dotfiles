@@ -20,11 +20,12 @@ alias youtube-wav="youtube-dl -x --audio-format wav"
 alias icat="kitty +kitten icat"
 alias d="kitty +kitten diff"
 export KITTY_CONFIG_DIRECTORY="$HOME/.config/kitty"
-autoload -Uz compinit
-compinit
 kitty + complete setup zsh | source /dev/stdin
 
 function todo() {
   vim $HOME/Dokumenty/todo/$1
 }
+
+autoload -Uz compinit
+compinit
 
