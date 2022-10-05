@@ -78,10 +78,15 @@ return require('packer').startup(function(use)
     -- todo: use {'nvim-telescope/telescope-media-files.nvim', opt = false}
 
     -- LSP, completions and snippets
-    -- use 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-tsserver coc-pyright coc-html coc-css coc-json coc-prettier coc-pairs coc-highlight coc-spell-checker coc-snippets'}
-    -- use 'SirVer/ultisnips'
-    -- use 'honza/vim-snippets'
-
+    use {
+        'neoclide/coc.nvim', 
+        branch = 'release',
+        config = function()
+            require('plugins.coc')
+        end,
+    }
+    use 'SirVer/ultisnips'
+    use 'honza/vim-snippets'
     
     -- todo: https://www.reddit.com/r/neovim/comments/jxub94/reload_lua_config/
 

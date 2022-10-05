@@ -1,0 +1,1 @@
+-- vim.cmd('CocInstall coc-tsserver coc-pyright coc-html coc-css coc-json coc-prettier coc-pairs coc-highlight coc-spell-checker coc-snippets')
