@@ -87,7 +87,15 @@ return require('packer').startup(function(use)
     }
     use 'SirVer/ultisnips'
     use 'honza/vim-snippets'
-    
-    -- todo: https://www.reddit.com/r/neovim/comments/jxub94/reload_lua_config/
 
+    -- treesitter
+    use {
+        "nvim-treesitter/nvim-treesitter",
+        run = ":TSUpdate",
+        config = function()
+            require('plugins.treesitter')
+        end,
+    }
+    use 'p00f/nvim-ts-rainbow'
+   
 end)
