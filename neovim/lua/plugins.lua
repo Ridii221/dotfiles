@@ -14,11 +14,12 @@ return require('packer').startup(function(use)
 
     -- themes and looks
     use {'dracula/vim', as = 'dracula'}
-    --use 'itchyny/lightline.vim'
 
     -- basic
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
+    use 'sheerun/vim-polyglot'
+    use 'fladson/vim-kitty'
     use 'ap/vim-css-color'
     use {
         'lukas-reineke/indent-blankline.nvim',
@@ -26,8 +27,6 @@ return require('packer').startup(function(use)
             vim.g.indentLine_char_list = {'▏'}
         end,
     }
-    use 'sheerun/vim-polyglot'
-    use 'fladson/vim-kitty'
     use 'xolox/vim-misc'
     use {
         'xolox/vim-session',
@@ -35,12 +34,12 @@ return require('packer').startup(function(use)
             require('plugins.vim-session')
         end
     }
-
     use 'kyazdani42/nvim-web-devicons'
 
     -- movement
     use 'easymotion/vim-easymotion'
 
+    -- status line
     use {
         'nvim-lualine/lualine.nvim',
         config = function()
@@ -64,6 +63,20 @@ return require('packer').startup(function(use)
             require('plugins.nvim-tree')
         end,
     }
+
+    -- telescope
+    -- install ripgrep, bat
+    use {
+        'nvim-telescope/telescope.nvim', tag = '0.1.0',
+        requires = { {'nvim-lua/plenary.nvim'} },
+        config = function()
+            require('plugins.telescope')
+        end,
+    }
+    use 'nvim-telescope/telescope-fzy-native.nvim'
+    use 'xiyaowong/telescope-emoji.nvim'
+    -- todo: use {'nvim-telescope/telescope-media-files.nvim', opt = false}
+
     -- LSP, completions and snippets
     -- use 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-tsserver coc-pyright coc-html coc-css coc-json coc-prettier coc-pairs coc-highlight coc-spell-checker coc-snippets'}
     -- use 'SirVer/ultisnips'

@@ -1,17 +1,3 @@
-" lightline
-let g:lightline = {
-      \ 'colorscheme': 'dracula',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead',
-      \   'cocstatus': 'coc#status'
-      \ },
-      \ }
-
-"""""""""""""""""""""""""""""""""
 "	CoC
 """""""""""""""""""""""""""""""""
 let g:coc_disable_startup_warning = 1
@@ -152,21 +138,4 @@ let g:coc_snippet_next = '<c-j>'
 
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
-
-
-"""""""""""""""""""""""""""""""""
-"	0.4 FZF
-"""""""""""""""""""""""""""""""""
-
-" Search in code
-nnoremap <leader>fd :Rg<CR>
-
-" Search file
-nnoremap <leader>fi :Files<CR>
-
-" Search buffer
-nnoremap <leader>fb :Buffers<CR>
-
-" Search git status
-nnoremap <leader>fc :GFiles?<CR>
 
