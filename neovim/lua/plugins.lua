@@ -20,29 +20,55 @@ return require('packer').startup(function(use)
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
     use 'ap/vim-css-color'
-    use 'lukas-reineke/indent-blankline.nvim'
+    use {
+        'lukas-reineke/indent-blankline.nvim',
+        config = function() 
+            vim.g.indentLine_char_list = {'▏'}
+        end,
+    }
     use 'sheerun/vim-polyglot'
     use 'fladson/vim-kitty'
     use 'xolox/vim-misc'
-    use 'xolox/vim-session'
-    use 'ryanoasis/vim-devicons'
+    use {
+        'xolox/vim-session',
+        config = function()
+            require('plugins.vim-session')
+        end
+    }
 
-    -- file tree
-    -- use 'preservim/nerdtree'
+    use 'kyazdani42/nvim-web-devicons'
 
     -- movement
     use 'easymotion/vim-easymotion'
 
+    use {
+        'nvim-lualine/lualine.nvim',
+        config = function()
+            require('plugins.lualine')
+        end,
+    }
+
+    -- git integration
+    use {
+        'mhinz/vim-signify', 
+        config = function()
+            require('plugins.signify')
+        end,
+    }
+    use {'tpope/vim-fugitive', {'tpope/vim-rhubarb', opt = false}, {'tommcdo/vim-fubitive', opt = false}}
+
+    -- file tree
+    use {
+        'kyazdani42/nvim-tree.lua',
+        config = function()
+            require('plugins.nvim-tree')
+        end,
+    }
     -- LSP, completions and snippets
     -- use 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-tsserver coc-pyright coc-html coc-css coc-json coc-prettier coc-pairs coc-highlight coc-spell-checker coc-snippets'}
     -- use 'SirVer/ultisnips'
     -- use 'honza/vim-snippets'
 
-    -- git integration
-    -- use 'airblade/vim-gitgutter'
-    -- use 'tpope/vim-fugitive'
-    -- use 'tpope/vim-rhubarb'
-    -- use 'tommcdo/vim-fubitive'
     
     -- todo: https://www.reddit.com/r/neovim/comments/jxub94/reload_lua_config/
 

@@ -11,45 +11,6 @@ let g:lightline = {
       \ },
       \ }
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"	5. Plugins configs
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:indentLine_char_list = ['▏']
-
-"""""""""""""""""""""""""""""""""
-"	NERDTree
-"""""""""""""""""""""""""""""""""
-
-" Toggle NERDTree
-map <C-n> :NERDTreeToggle<CR>
-
-" Find current file in tree
-nnoremap <leader>fn :NERDTreeFind %<CR>
-
-" reopen NERDTree
-nmap FF :NERDTree <CR>
-
-" NERDTree ui
-let g:NERDTreeMinimalUI = 1
-
-" Open a NERDTree automatically when vim starts up if no files were specified
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
-" Close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" NERDTree on the left
-let g:NERDTreeWinPos = "left"
-
-" Open and close node with l and h"
-let g:NERDTreeMapActivateNode = "l"
-let g:NERDTreeMapOpenRecursively = "L"
-let g:NERDTreeMapCloseDir = "h"
-let g:NERDTreeMapCloseChildren = "H"
-
-let g:NERDTreeMapToggleHidden = "."
-
 """""""""""""""""""""""""""""""""
 "	CoC
 """""""""""""""""""""""""""""""""
@@ -192,25 +153,6 @@ let g:coc_snippet_next = '<c-j>'
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
 
-"""""""""""""""""""""""""""""""""
-"	vim-session
-"""""""""""""""""""""""""""""""""
-
-nnoremap <leader>o :OpenSession<cr>
-nnoremap <leader>O :OpenSession!<cr>
-
-" Don't save hidden and unloaded buffers in sessions.
-set sessionoptions-=buffers
-
-" Don't persist options and mappings because it can corrupt sessions.
-set sessionoptions-=options
-
-let g:session_default_overwrite = 1
-
-" Autosave
-let g:session_autosave_periodic=5
-let g:session_autosave_silent=1
-let g:session_autosave='yes'
 
 """""""""""""""""""""""""""""""""
 "	0.4 FZF

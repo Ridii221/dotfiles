@@ -1,6 +1,4 @@
 local o = vim.o
-local w = vim.wo
-local b = vim.bo
 local g = vim.g
 
 vim.cmd('colorscheme dracula')
@@ -16,9 +14,9 @@ o.signcolumn = 'yes'
 o.ignorecase = true
 o.smartcase = true
 o.scrolloff = 7
-w.foldcolumn = '1'
-w.wrap = false
-o.updatetime = 300
+o.foldcolumn = '1'
+o.wrap = false
+o.updatetime = 100
 o.timeoutlen = 500
 o.clipboard = 'unnamedplus'
 o.shortmess = 'Sc'
@@ -28,11 +26,11 @@ o.showtabline = 2
 o.helpheight = 30
 
 -- tabs and indent
-b.tabstop = 4
-b.expandtab = true
-b.shiftwidth = 0
-b.autoindent = true
-b.smartindent = true
+o.tabstop = 4
+o.expandtab = true
+o.shiftwidth = 0
+o.autoindent = true
+o.smartindent = true
 
 -- backup settings
 o.backup = false
@@ -44,7 +42,4 @@ o.swapfile = false
 o.splitright = true
 o.splitbelow = true
 
--- not sure if i need this
 -- o.switchbuf = 'useopen,uselast'
--- o.jumpoptions = 'view'
--- b.tw = 500

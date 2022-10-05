@@ -25,8 +25,8 @@ keymap('n', '<leader>wo', '<C-W>o', {});
 
 -- move between tabs
 keymap('', 'th', 'gT', {})
-keymap('', '[t', 'gT', {})
 keymap('', 'tl', 'gt', {})
+keymap('', '[t', 'gT', {})
 keymap('', ']t', 'gt', {})
 
 -- tabs managment
