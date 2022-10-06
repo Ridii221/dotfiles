@@ -4,8 +4,6 @@ vim.g.loaded_netrwPlugin = 1
 vim.keymap.set('', '<c-n>', ':NvimTreeToggle<cr>')
 vim.keymap.set('', '<leader>fn', ':NvimTreeFindFile<cr>')
 
--- todo: close neovim if the only window left open is a NvimTree
-
 require("nvim-tree").setup({
     sort_by = "case_sensitive",
     view = {
@@ -14,9 +12,9 @@ require("nvim-tree").setup({
             list = {
                 { key = "h", action = "close_node" },
                 { key = "l", action = "edit" },
-                { key = "<C-o>", action = "system_open" },
                 { key = "<C-t>", action = "" },
                 { key = "t", action = "tabnew" },
+                { key = "cd", action = "cd" },
             },
         },
     },
@@ -26,4 +24,15 @@ require("nvim-tree").setup({
     filters = {
         dotfiles = true,
     },
+})
+
+local group = vim.api.nvim_create_augroup('user_nvim-tree', { clear = true })
+vim.api.nvim_create_autocmd("BufEnter", {
+    group = group,
+    nested = true,
+    callback = function()
+      if #vim.api.nvim_list_wins() == 1 and vim.api.nvim_buf_get_name(0):match("NvimTree_") ~= nil then
+        vim.cmd "quit"
+      end
+    end
 })
