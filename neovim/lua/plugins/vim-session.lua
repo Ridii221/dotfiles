@@ -8,4 +8,4 @@ vim.g.session_default_overwrite = 1
 
 vim.g.session_autosave_periodic = 5
 vim.g.session_autosave_silent = 1
-vim.g.session_autosave = 'yes'
+vim.g.session_autosave = 'no'
