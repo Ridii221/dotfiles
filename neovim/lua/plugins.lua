@@ -85,7 +85,12 @@ return require('packer').startup(function(use)
             require('plugins.coc')
         end,
     }
-    use 'SirVer/ultisnips'
+    use {
+        'SirVer/ultisnips',
+        config = function()
+            vim.g.UltiSnipsExpandTrigger = ""
+        end
+    }
     use 'honza/vim-snippets'
 
     -- treesitter
