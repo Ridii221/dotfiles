@@ -18,7 +18,6 @@ return require('packer').startup(function(use)
     -- basic
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
-    use 'sheerun/vim-polyglot'
     use 'fladson/vim-kitty'
     use 'ap/vim-css-color'
     use {
@@ -26,13 +25,6 @@ return require('packer').startup(function(use)
         config = function() 
             vim.g.indentLine_char_list = {'▏'}
         end,
-    }
-    use 'xolox/vim-misc'
-    use {
-        'xolox/vim-session',
-        config = function()
-            require('plugins.vim-session')
-        end
     }
     use 'kyazdani42/nvim-web-devicons'
 
@@ -88,7 +80,7 @@ return require('packer').startup(function(use)
     use {
         'SirVer/ultisnips',
         config = function()
-            vim.g.UltiSnipsExpandTrigger = ""
+            vim.g.UltiSnipsExpandTrigger = ","
         end
     }
     use 'honza/vim-snippets'

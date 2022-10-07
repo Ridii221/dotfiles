@@ -22,7 +22,7 @@ o.clipboard = 'unnamedplus'
 o.shortmess = 'Sc'
 o.whichwrap = '<,>,h,l'
 o.termguicolors = true
-o.showtabline = 2
+o.showtabline = 1
 o.helpheight = 30
 
 -- tabs and indent
