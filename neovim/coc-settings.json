@@ -3,6 +3,30 @@
     "coc.preferences.jumpCommand": "tab drop",
     "coc.preferences.extensionUpdateCheck": "daily",
     // lists config
-    "list.nextKeymap": "<C-n>",
-    "list.previousKeymap": "<C-p>"
+    "list.source.diagnostics.defaultOptions": ["--normal", "--auto-preview", "--no-quit"],
+    "list.source.extensions.defaultOptions": ["--normal"],
+    "list.source.outline.defaultOptions": ["--auto-preview", "--no-quit"],
+    "list.source.snippets.defaultOptions": ["--auto-preview"],
+    "list.insertMappings": {
+		"<C-t>": "action:tabe",
+		"<C-r>": "do:refresh",
+        "<C-n>": "do:next",
+        "<C-j>": "do:next",
+        "<C-p>": "do:previous",
+        "<C-k>": "do:previous",
+        "<C-u>": "do:previewup",
+        "<C-d>": "do:previewdown",
+        "<C-c>": "do:exit",
+        "<A-q>": "action:quickfix"
+    },
+    "list.normalMappings": {
+		"<C-t>": "action:tabe",
+		"<C-r>": "do:refresh",
+        "<C-u>": "do:previewup",
+        "<C-d>": "do:previewdown",
+        "<C-c>": "do:exit",
+        "<Tab>": "do:toggle",
+        "<Space>": "do:chooseaction",
+        "<A-q>": "action:quickfix"
+    }
 }

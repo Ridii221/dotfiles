@@ -12,6 +12,14 @@ vim.keymap.set('n', 'fc', builtin.git_commits)
 vim.keymap.set('n', 'fC', builtin.git_bcommits)
 
 telescope.setup({
+    defaults = {
+        mappings = {
+            i = {
+                ["<C-j>"] = "cycle_history_next",
+                ["<C-k>"] = "cycle_history_prev",
+            }
+        }
+    },
     extensions = {
         fzy_native = {
             override_generic_sorter = false,

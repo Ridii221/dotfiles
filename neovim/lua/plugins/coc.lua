@@ -96,24 +96,24 @@ keymap("x", "<leader>v", "<Plug>(coc-range-select)", {silent = true})
 ---@diagnostic disable-next-line: redefined-local
 local opts = {silent = true, nowait = true}
 -- Show all diagnostics.
-keymap("n", "<Bslash>d", ":<C-u>CocList diagnostics<cr>", opts)
+keymap("n", "<Bslash>d", ":CocList diagnostics<cr>", opts)
 -- Manage extensions.
-keymap("n", "<Bslash>e", ":<C-u>CocList extensions<cr>", opts)
+keymap("n", "<Bslash>e", ":CocList extensions<cr>", opts)
 -- Show commands.
-keymap("n", "<Bslash>c", ":<C-u>CocList commands<cr>", opts)
+keymap("n", "<Bslash>c", ":CocList commands<cr>", opts)
 -- Find symbol of current document.
-keymap("n", "<Bslash>a", ":<C-u>CocList outline<cr>", opts)
+keymap("n", "<Bslash>a", ":CocList outline<cr>", opts)
 -- Search workspace symbols.
-keymap("n", "<Bslash>s", ":<C-u>CocList -I symbols<cr>", opts)
+keymap("n", "<Bslash>s", ":CocList symbols<cr>", opts)
 -- Search for snippets
-keymap("n", "<Bslash>o", ":<C-u>CocList snippets<cr>", opts)
+keymap("n", "<Bslash>o", ":CocList snippets<cr>", opts)
 -- Resume latest coc list.
-keymap("n", "<Bslash><Bslash>", ":<C-u>CocListResume<cr>", opts)
+keymap("n", "<Bslash><Bslash>", ":CocListResume<cr>", opts)
 
 -- Do default action for next item.
-keymap("n", "<leader>j", ":<C-u>CocNext<cr>", opts)
+keymap("n", "<leader>j", ":CocNext<cr>", opts)
 -- Do default action for previous item.
-keymap("n", "<leader>k", ":<C-u>CocPrev<cr>", opts)
+keymap("n", "<leader>k", ":CocPrev<cr>", opts)
 
 -- coc-snippets
 -- convert visual selected code to snippet

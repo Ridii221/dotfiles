@@ -2,6 +2,9 @@ local keymap = vim.api.nvim_set_keymap
 
 -- quit, save
 keymap('n', '<leader>q', ':q<cr>', {})
+keymap('n', '<leader>Q', ':qa!', {})
+keymap('n', '<leader>wq', ':q<cr>', {})
+keymap('n', '<leader>tq', ':tabclose<cr>', {})
 keymap('', '<c-s>', ':w<cr>', {})
 keymap('i', '<c-s>', '<c-o>:w<cr>', {})
 
@@ -44,6 +47,7 @@ keymap('', '[t', 'gT', {})
 keymap('', ']t', 'gt', {})
 
 -- tabs managment
+keymap('n', '<leader>T', '<C-W>T', {})
 keymap('n', '<leader>tn', ':tabnew<cr>', {})
 keymap('n', '<leader>to', ':tabonly<cr>', {})
 keymap('n', '<leader>tc', ':tabclose<cr>', {})
@@ -60,5 +64,6 @@ keymap('n', '<leader>tR', ':.-1,1tabdo :q <cr>', {})
 keymap('n', 'H', 'g0', {})
 keymap('n', 'L', 'g_', {})
 
--- help quick
-keymap('n', '<leader>h', ':help ', {})
+-- cycle commands history
+keymap('c', '<c-j>', '<c-n>', {})
+keymap('c', '<c-k>', '<c-p>', {})
