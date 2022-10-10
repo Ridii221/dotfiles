@@ -2,7 +2,7 @@ local keymap = vim.api.nvim_set_keymap
 
 -- quit, save
 keymap('n', '<leader>q', ':q<cr>', {})
-keymap('n', '<leader>Q', ':qa!', {})
+keymap('n', '<leader>Q', ':qa!<cr>', {})
 keymap('n', '<leader>wq', ':q<cr>', {})
 keymap('n', '<leader>tq', ':tabclose<cr>', {})
 keymap('', '<c-s>', ':w<cr>', {})
