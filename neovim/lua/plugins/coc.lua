@@ -63,14 +63,14 @@ keymap("n", "<leader>F", "<Plug>(coc-format)", {silent = true})
 local opts = {silent = true, nowait = true}
 keymap("x", "<leader>a", "<Plug>(coc-codeaction-selected)", opts)
 keymap("n", "<leader>a", "<Plug>(coc-codeaction)", opts)
+keymap("n", "<leader>rn", "<Plug>(coc-rename)>", opts)
+keymap("n", "<leader>rr", "<Plug>(coc-refactor)>", opts)
 
 -- organize imports
 keymap("n", "<leader>ai", ":OR", opts)
 
 -- Apply AutoFix to problem on the current line.
 keymap("n", "<leader>af", "<Plug>(coc-fix-current)", opts)
-
-keymap("n", "<leader>rn", "<Plug>(coc-rename)>", opts)
 
 -- Run the Code Lens action on the current line.
 -- todo: what is code lens
@@ -144,6 +144,32 @@ vim.api.nvim_create_autocmd("User", {
     command = "call CocActionAsync('showSignatureHelp')",
     desc = "Update signature help on jump placeholder"
 })
+
+-- todo: write this in lua
+-- vim.cmd('autocmd VimEnter,Tabnew * if empty(&buftype) | call CocActionAsync('showOutline', 1) | endif'
+
+-- autocmd BufEnter * call CheckOutline()
+--   function! CheckOutline() abort
+--     if &filetype ==# 'coctree' && winnr('$') == 1
+--       if tabpagenr('$') != 1
+--         close
+--       else
+--         bdelete
+--       endif
+--     endif
+--   endfunction
+-- 
+--   nnoremap <silent><nowait> <space>o  :call ToggleOutline()<CR>
+-- 
+--   function! ToggleOutline() abort
+--     let winid = coc#window#find('cocViewId', 'OUTLINE')
+--     if winid == -1
+--       call CocActionAsync('showOutline', 1)
+--     else
+--       call coc#window#close(winid)
+--     endif
+--   endfunction
+
 
 -- todo: i dont understand this
 -- Remap <C-f> and <C-b> for scroll float windows/popups.
