@@ -17,9 +17,18 @@ keymap('', '<leader>wj', '<C-W>j', {})
 keymap('', '<leader>wk', '<C-W>k', {})
 keymap('', '<leader>wl', '<C-W>l', {})
 
+-- resize windows
+keymap('', '<leader>w-', ':resize -5<cr>', {})
+keymap('', '<leader>w+', ':resize +5<cr>', {})
+keymap('', '<leader>w<', ':vertical resize +5<cr>', {})
+keymap('', '<leader>w>', ':vertical resize +5<cr>', {})
+keymap('', '<leader>w=', '<C-W>=', {})
+
 -- windows managment
-keymap('n', '<leader>wt', '<C-W>T', {});
-keymap('n', '<leader>wo', '<C-W>o', {});
+keymap('n', '<leader>wt', '<C-W>T', {})
+keymap('n', '<leader>wo', '<C-W>o', {})
+keymap('n', '<leader>wv', '<C-W>v', {})
+keymap('n', '<leader>ws', '<C-W>s', {})
 
 -- move windows
 keymap('n', '<leader>wH', '<C-W>H', {})

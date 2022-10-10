@@ -1,0 +1,8 @@
+{
+    // preferences
+    "coc.preferences.jumpCommand": "tab drop",
+    "coc.preferences.extensionUpdateCheck": "daily",
+    // lists config
+    "list.nextKeymap": "<C-n>",
+    "list.previousKeymap": "<C-p>"
+}

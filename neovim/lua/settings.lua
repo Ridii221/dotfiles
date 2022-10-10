@@ -23,7 +23,7 @@ o.shortmess = 'Sc'
 o.whichwrap = '<,>,h,l'
 o.termguicolors = true
 o.showtabline = 1
-o.helpheight = 30
+o.helpheight = 20
 
 -- tabs and indent
 o.tabstop = 4
