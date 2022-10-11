@@ -1,4 +1,5 @@
 local lualine = require('lualine')
+local ll_mode = require('lualine.utils.mode').get_mode
 
 -- from dracula
 local colors = {
@@ -50,14 +51,6 @@ local config = {
   },
 }
 
-function _get_section_name(section_id)
-    if section_id ~= nil then
-        return 'section_' .. section_id
-    else
-        return nil
-    end
-end
-
 -- Inserts a component in lualine_c at left section
 local function ins_left(component, options)
   local section = 'lualine_c'
@@ -84,31 +77,27 @@ end
 
 ins_left {
   -- mode component
-    function()
-    -- auto change color according to neovims mode
-    local mode_color = {
-      n = '😎',
-      no = '😎',
-      i = '😨',
-      ic = '😨',
-      v = '😯',
-      [''] = '😯',
-      V = '😯',
-      s = '🔍',
-      S = '🔍',
-      [''] = '🔍',
-      R = '😰',
-      Rv = '😰',
-      c = '🤔',
-      cv = '🤔',
-      ce = '🤔',
-      r = '👍',
-      ['r?'] = '👍',
-      rm = '😑',
-      ['!'] = '🏃',
-      t = '🤓',
+  function()
+    local mode = {
+      NORMAL = '😎',
+      ['O-PENDING'] = '😤',
+      VISUAL = '😯',
+      ['V-LINE'] = '😯',
+      ['V-BLOCK'] = '😯',
+      SELECT = '🔍',
+      ['S-LINE'] = '🔍',
+      ['S-BLOCK'] = '🔍',
+      INSERT = '😨',
+      REPLACE = '😰',
+      ['V-REPLACE'] = '😰',
+      COMMAND = '🤔',
+      EX = '🤔',
+      MORE = '😑',
+      CONFIRM = '👍',
+      SHELL = '🏃',
+      TERMINAL = '🤓',
     }
-    return mode_color[vim.fn.mode()]
+    return mode[ll_mode()]
   end,
   padding = {left = 2, right = 1 },
 }
