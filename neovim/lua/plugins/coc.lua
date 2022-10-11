@@ -1,4 +1,5 @@
 local keymap = vim.keymap.set
+vim.api.nvim_create_augroup("CocGroup", {})
 -- after install
 -- vim.cmd('CocInstall coc-tsserver coc-pyright coc-html coc-css coc-json coc-prettier coc-pairs coc-highlight coc-spell-checker coc-snippets')
 
@@ -35,9 +36,6 @@ keymap("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
 
 -- Make <CR> to accept selected completion item or notify coc.nvim to format
 keymap("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
-
--- Use <c-j> to trigger snippets
-keymap("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
 
 -- Use <c-space> to trigger completion.
 keymap("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
@@ -118,10 +116,20 @@ keymap("n", "<leader>k", ":CocPrev<cr>", opts)
 -- coc-snippets
 -- convert visual selected code to snippet
 keymap('x', '<leader>x', '<Plug>(coc-convert-snippet)', { silent = true })
+-- Use <c-j> to trigger snippets
+keymap("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
+-- Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+vim.g.coc_snippet_prev = '<c-k>'
 
--- autocmd
+-- Update signature help on jump placeholder.
+vim.api.nvim_create_autocmd("User", {
+    group = "CocGroup",
+    pattern = "CocJumpPlaceholder",
+    command = "call CocActionAsync('showSignatureHelp')",
+    desc = "Update signature help on jump placeholder"
+})
+
 -- Highlight the symbol and its references when holding the cursor.
-vim.api.nvim_create_augroup("CocGroup", {})
 vim.api.nvim_create_autocmd("CursorHold", {
     group = "CocGroup",
     command = "silent call CocActionAsync('highlight')",
@@ -137,49 +145,45 @@ vim.api.nvim_create_autocmd("FileType", {
     desc = "Setup formatexpr specified filetype(s)."
 })
 
--- Update signature help on jump placeholder.
-vim.api.nvim_create_autocmd("User", {
+-- show outline on open
+-- vim.api.nvim_create_autocmd({"VimEnter", "Tabnew"}, {
+--     group = "CocGroup",
+--     pattern = "*",
+--     command = "if empty(&buftype) | call CocActionAsync('showOutline', 1) | endif"
+-- })
+
+-- close outline when in last window
+vim.api.nvim_create_autocmd("BufEnter", {
     group = "CocGroup",
-    pattern = "CocJumpPlaceholder",
-    command = "call CocActionAsync('showSignatureHelp')",
-    desc = "Update signature help on jump placeholder"
+    pattern = "*",
+    callback = function ()
+        if (vim.bo.filetype == "coctree") and (vim.fn.winnr("$") == 1) then
+            if vim.fn.tabpagenr('$') ~= 1 then
+                vim.cmd('close')
+            else
+                vim.cmd('bdelete')
+            end
+        end
+    end
 })
 
--- todo: write this in lua
--- vim.cmd('autocmd VimEnter,Tabnew * if empty(&buftype) | call CocActionAsync('showOutline', 1) | endif'
+local function toggle_outline()
+    local w_id = vim.fn['coc#window#find']('cocViewId', 'OUTLINE')
+    if w_id == -1 then
+        vim.fn.CocActionAsync('showOutline', 1)
+    else
+        vim.fn['coc#window#close'](w_id)
+    end
+end
 
--- autocmd BufEnter * call CheckOutline()
---   function! CheckOutline() abort
---     if &filetype ==# 'coctree' && winnr('$') == 1
---       if tabpagenr('$') != 1
---         close
---       else
---         bdelete
---       endif
---     endif
---   endfunction
--- 
---   nnoremap <silent><nowait> <space>o  :call ToggleOutline()<CR>
--- 
---   function! ToggleOutline() abort
---     let winid = coc#window#find('cocViewId', 'OUTLINE')
---     if winid == -1
---       call CocActionAsync('showOutline', 1)
---     else
---       call coc#window#close(winid)
---     endif
---   endfunction
+keymap('', '<leader>ao', toggle_outline, { silent = true, nowait = true })
 
-
--- todo: i dont understand this
--- Remap <C-f> and <C-b> for scroll float windows/popups.
+-- Remap <C-d> and <C-u> for scroll float windows/popups.
 ---@diagnostic disable-next-line: redefined-local
--- local opts = {silent = true, nowait = true, expr = true}
--- keymap("n", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', opts)
--- keymap("n", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', opts)
--- keymap("i", "<C-f>",
---        'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : "<Right>"', opts)
--- keymap("i", "<C-b>",
---        'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : "<Left>"', opts)
--- keymap("v", "<C-f>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-f>"', opts)
--- keymap("v", "<C-b>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-b>"', opts)
+local opts = {silent = true, nowait = true, expr = true}
+keymap("n", "<C-d>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-d>"', opts)
+keymap("n", "<C-u>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-u>"', opts)
+keymap("i", "<C-d>", 'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(1)<cr>" : ""', opts)
+keymap("i", "<C-u>", 'coc#float#has_scroll() ? "<c-r>=coc#float#scroll(0)<cr>" : ""', opts)
+keymap("v", "<C-d>", 'coc#float#has_scroll() ? coc#float#scroll(1) : "<C-d>"', opts)
+keymap("v", "<C-u>", 'coc#float#has_scroll() ? coc#float#scroll(0) : "<C-u>"', opts)

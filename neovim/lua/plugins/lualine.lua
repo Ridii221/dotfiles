@@ -139,13 +139,19 @@ ins_left {
   cond = hide_in_width,
 }
 
-ins_right({
+ins_left {
+    function()
+        return "%="
+    end
+}
+
+ins_left({
   function()
     return vim.g.coc_status;
   end,
   icon = ' ',
   color = { gui = 'bold' },
-}, { section = 'x'})
+})
 
 ins_right {
   'branch',
