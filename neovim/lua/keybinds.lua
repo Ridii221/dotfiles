@@ -61,9 +61,12 @@ keymap('n', '<leader>tr', ':.+1,$tabdo :q <cr>', {})
 keymap('n', '<leader>tR', ':.-1,1tabdo :q <cr>', {})
 
 -- move to start/end of the line
-keymap('n', 'H', 'g0', {})
+keymap('n', 'H', '0', {})
 keymap('n', 'L', 'g_', {})
 
 -- cycle commands history
 keymap('c', '<c-j>', '<c-n>', {})
 keymap('c', '<c-k>', '<c-p>', {})
+
+-- input keybinds
+keymap('i', '<c-e>', '<c-o>dw', {})

@@ -15,8 +15,9 @@ telescope.setup({
     defaults = {
         mappings = {
             i = {
-                ["<C-j>"] = "cycle_history_next",
-                ["<C-k>"] = "cycle_history_prev",
+                -- todo: this is problem with other plugins
+                -- ["<C-j>"] = "cycle_history_next",
+                -- ["<C-k>"] = "cycle_history_prev",
             }
         }
     },

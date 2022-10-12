@@ -41,7 +41,7 @@ return require('packer').startup(function(use)
 
     -- git integration
     use {
-        'mhinz/vim-signify', 
+        'mhinz/vim-signify',
         config = function()
             require('plugins.signify')
         end,

@@ -1,8 +1,23 @@
 {
     // preferences
-    "coc.preferences.jumpCommand": "tab drop",
+    "coc.preferences.jumpCommand": "edit",
+    "coc.preferences.enableMessageDialog": true,
     "coc.preferences.extensionUpdateCheck": "daily",
-    // lists config
+    "coc.preferences.enableLinkedEditing": true,
+    "coc.preferences.formatOnSaveFiletypes": ["typescript", "reacttypescript"],
+    // diagnostics
+    "diagnostic.errorSign": "✗",
+    "diagnostic.infoSign": "!",
+    "diagnostic.warningSign": "⚠",
+    "diagnostic.level": "hint",
+    // dialog
+    "dialog.rounded": false,
+    // codeLens
+    "codeLens.enable": false,
+    "codeLens.position": "eol",
+    // inlay hints
+    "inlayHint.enable": false,
+    // lists
     "list.source.diagnostics.defaultOptions": ["--normal", "--auto-preview", "--no-quit"],
     "list.source.extensions.defaultOptions": ["--normal"],
     "list.source.outline.defaultOptions": ["--auto-preview", "--no-quit"],
@@ -24,9 +39,17 @@
 		"<C-r>": "do:refresh",
         "<C-u>": "do:previewup",
         "<C-d>": "do:previewdown",
+        "<C-n>": "do:next",
+        "<C-j>": "do:next",
+        "<C-p>": "do:previous",
+        "<C-k>": "do:previous",
         "<C-c>": "do:exit",
         "<Tab>": "do:toggle",
         "<Space>": "do:chooseaction",
         "<A-q>": "action:quickfix"
-    }
+    },
+    // snippets
+    //"snippet.choicesMenuPicker": true,
+    "snippet.nextPlaceholderOnDelete": true,
+    "snippet.highlight": true
 }
