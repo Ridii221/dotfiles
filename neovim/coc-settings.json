@@ -1,6 +1,6 @@
 {
     // preferences
-    "coc.preferences.jumpCommand": "edit",
+    "coc.preferences.jumpCommand": "tab drop",
     "coc.preferences.enableMessageDialog": true,
     "coc.preferences.extensionUpdateCheck": "daily",
     "coc.preferences.enableLinkedEditing": true,
