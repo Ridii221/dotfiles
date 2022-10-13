@@ -7,12 +7,14 @@ COMPLETION_WAITING_DOTS="true"
 plugins=(git git-flow pip python node npm)
 source $ZSH/oh-my-zsh.sh
 
+export EDITOR="nvim"
+
 # Aliases
 alias pip="pip3"
 alias python="python3"
-alias vim="nvim" 
 alias q="exit" 
 alias :q="exit"
+alias nv="nvim"
 
 alias youtube-wav="youtube-dl -x --audio-format wav"
 
@@ -23,9 +25,8 @@ export KITTY_CONFIG_DIRECTORY="$HOME/.config/kitty"
 kitty + complete setup zsh | source /dev/stdin
 
 function todo() {
-  vim $HOME/Dokumenty/todo/$1
+  $EDITOR $HOME/Dokumenty/todo/$1
 }
 
 autoload -Uz compinit
 compinit
-
