@@ -1,3 +1,12 @@
+# todo
+
+map tags from 1-9 to uiop[]789
+
+autostart
+- xset r rate 280 40
+- setxkbmap -option "caps:escape"
+- ssh-agent
+
 # problems
 
 ### bluetooth settings does not work in gnome-control-center (Settings)
