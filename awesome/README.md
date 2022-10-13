@@ -1,0 +1,22 @@
+# problems
+
+### bluetooth settings does not work in gnome-control-center (Settings)
+
+- ```sudo apt install blueman```
+
+### sound control with media keys
+
+- 
+
+### git ssh key not working??
+
+- ```ssh-add <key_file>```
+
+### caps to esc
+
+- ```setxkbmap -option "caps:escape"```
+
+### default apps looks
+- ```sudo apt install lxappearance```
+
+### high backspace repeat delay???
