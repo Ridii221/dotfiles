@@ -15,8 +15,8 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local theme                                     = {}
 theme.zenburn_dir                               = require("awful.util").get_themes_dir() .. "zenburn"
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/my"
-theme.wallpaper                                 = os.getenv("HOME") .. "/.config/awesome/forest-dark.jpg"
-theme.font                                      = "Terminus 10.5"
+theme.wallpaper                                 = theme.dir .. "/wall.png"
+theme.font                                      = "FiraCode Mono Font 10"
 
 theme.fg_normal = "#F8F8F2"
 theme.fg_focus = "#F8F8F2"
@@ -57,6 +57,7 @@ theme.menu_height                               = dpi(16)
 theme.menu_width                                = dpi(140)
 theme.awesome_icon                              = theme.dir .."/icons/awesome.png"
 theme.menu_submenu_icon                         = theme.dir .. "/icons/submenu.png"
+
 theme.layout_txt_tile                           = "[t]"
 theme.layout_txt_tileleft                       = "[l]"
 theme.layout_txt_tilebottom                     = "[b]"
@@ -69,6 +70,16 @@ theme.layout_txt_max                            = "[m]"
 theme.layout_txt_fullscreen                     = "[F]"
 theme.layout_txt_magnifier                      = "[M]"
 theme.layout_txt_floating                       = "[f]"
+theme.layout_txt_cornernw                       = "[nw]"
+theme.layout_txt_cornerne                       = "[ne]"
+theme.layout_txt_cornersw                       = "[sw]"
+theme.layout_txt_cornerse                       = "[se]"
+theme.layout_txt_cornerse                       = "[se]"
+-- lain related
+theme.layout_txt_termfair                       = "[termfair]"
+theme.layout_txt_centerfair                     = "[centerfair]"
+theme.layout_txt_cascadetile                    = "[c]"
+
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
 theme.useless_gap                               = dpi(4)
@@ -92,10 +103,6 @@ theme.titlebar_maximized_button_normal_inactive = theme.zenburn_dir.."/titlebar/
 theme.titlebar_maximized_button_focus_inactive  = theme.zenburn_dir.."/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_active   = theme.zenburn_dir.."/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_active    = theme.zenburn_dir.."/titlebar/maximized_focus_active.png"
-
--- lain related
-theme.layout_txt_termfair                       = "[termfair]"
-theme.layout_txt_centerfair                     = "[centerfair]"
 
 local markup = lain.util.markup
 local gray   = "#94928F"
@@ -217,6 +224,8 @@ theme.weather = lain.widget.weather({
 })
 --]]
 
+local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
+
 -- Separators
 local first = wibox.widget.textbox(markup.font("Terminus 4", " "))
 local spr   = wibox.widget.textbox(' ')
@@ -283,10 +292,11 @@ function theme.at_screen_connect(s)
             wibox.widget.systray(),
             spr,
             -- theme.mpd.widget,
-            --theme.mail.widget,
+            -- theme.mail.widget,
+            spotify_widget(),
             cpu.widget,
             mem.widget,
-            bat.widget,
+            -- bat.widget,
             net.widget,
             theme.volume.widget,
             mytextclock

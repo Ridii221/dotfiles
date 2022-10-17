@@ -3,7 +3,18 @@
 ```sh
 git clone --recurse-submodules --remote-submodules --depth 1 -j 2 https://github.com/lcpz/awesome-copycats.git
 mv -bv awesome-copycats/* ~/.config/awesome; rm -rf awesome-copycats
+git clone https://github.com/streetturtle/awesome-wm-widgets
 cp ./awesome/* -r ~/.config/awesome/
+```
+
+### spotify widget
+
+https://github.com/streetturtle/awesome-wm-widgets/tree/master/spotify-widget
+```sh
+git clone https://gist.github.com/fa6258f3ff7b17747ee3.git
+cd ./fa6258f3ff7b17747ee3 
+chmod +x sp
+cp ./sp ~/.local/bin/
 ```
 
 # todo
