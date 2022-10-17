@@ -60,7 +60,7 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "urxvtd", "unclutter -root" }) -- comma-separated entries
+run_once({ "urxvtd", "unclutter -root", 'xset r rate 340 40', 'setxkbmap -option "caps:escape"', 'compton -b' }) -- comma-separated entries
 
 -- This function implements the XDG autostart specification
 --[[
@@ -76,19 +76,6 @@ awful.spawn.with_shell(
 
 -- {{{ Variable definitions
 
-local themes = {
-    "blackburn",       -- 1
-    "copland",         -- 2 ciekawie wyswietlane tagi
-    "dremora",         -- 3
-    "holo",            -- 4
-    "multicolor",      -- 5 fajne komponenty
-    "powerarrow",      -- 6
-    "powerarrow-dark", -- 7 fajne kolory
-    "rainbow",         -- 8
-    "steamburn",       -- 9 czytelne informacje, fajne komponenty
-    "vertex"           -- 10
-}
-
 local chosen_theme = "my"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
@@ -102,38 +89,34 @@ awful.util.terminal = terminal
 awful.util.tagnames = { "1", "2", "3", "4", "5", "6" }
 awful.layout.layouts = {
     awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
+    -- awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
+    --awful.layout.suit.tile.top,
     awful.layout.suit.fair,
     awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    -- awful.layout.suit.max,
-    awful.layout.suit.max.fullscreen,
-    --awful.layout.suit.magnifier,
-    --awful.layout.suit.corner.nw,
-    --awful.layout.suit.corner.ne,
-    --awful.layout.suit.corner.sw,
+    -- awful.layout.suit.spiral,
+    -- awful.layout.suit.spiral.dwindle,
+    awful.layout.suit.max,
+    -- awful.layout.suit.max.fullscreen,
+    awful.layout.suit.magnifier,
+    -- awful.layout.suit.corner.nw,
+    awful.layout.suit.corner.ne,
+    -- awful.layout.suit.corner.sw,
     awful.layout.suit.corner.se,
-    lain.layout.cascade,
+    -- lain.layout.cascade,
     lain.layout.cascade.tile,
-    --lain.layout.centerwork,
-    --lain.layout.centerwork.horizontal,
-    --lain.layout.termfair,
-    --lain.layout.termfair.center
+    -- lain.layout.centerwork,
+    -- lain.layout.centerwork.horizontal,
+    -- lain.layout.termfair,
+    -- lain.layout.termfair.center,
     awful.layout.suit.floating,
 }
 
--- lain.layout.termfair.nmaster           = 3
--- lain.layout.termfair.ncol              = 1
--- lain.layout.termfair.center.nmaster    = 3
--- lain.layout.termfair.center.ncol       = 1
--- lain.layout.cascade.tile.offset_x      = 2
--- lain.layout.cascade.tile.offset_y      = 32
--- lain.layout.cascade.tile.extra_padding = 5
--- lain.layout.cascade.tile.nmaster       = 5
--- lain.layout.cascade.tile.ncol          = 2
+lain.layout.cascade.tile.offset_x      = 10
+lain.layout.cascade.tile.offset_y      = 64
+lain.layout.cascade.tile.extra_padding = 10
+lain.layout.cascade.tile.nmaster       = 4
+lain.layout.cascade.tile.ncol          = 2
 
 awful.util.taglist_buttons = mytable.join(
     awful.button({ }, 1, function(t) t:view_only() end),
@@ -301,6 +284,30 @@ globalkeys = mytable.join(
         end,
         {description = "focus previous by index", group = "client"}
     ),
+    awful.key({ modkey, altkey    }, "j",
+        function ()
+            awful.client.focus.byidx( 1)
+        end,
+        {description = "focus next by index", group = "client"}
+    ),
+    awful.key({ modkey, altkey    }, "k",
+        function ()
+            awful.client.focus.byidx(-1)
+        end,
+        {description = "focus previous by index", group = "client"}
+    ),
+    awful.key({ modkey, altkey }, "h",
+        function()
+            awful.client.focus.global_bydirection("left")
+            if client.focus then client.focus:raise() end
+        end,
+        {description = "focus left", group = "client"}),
+    awful.key({ modkey, altkey }, "l",
+        function()
+            awful.client.focus.global_bydirection("right")
+            if client.focus then client.focus:raise() end
+        end,
+        {description = "focus right", group = "client"}),
 
     -- By-direction client focus
     awful.key({ modkey }, "j",
@@ -328,6 +335,18 @@ globalkeys = mytable.join(
         end,
         {description = "focus right", group = "client"}),
 
+    -- change master width
+    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incmwfact( 0.05)          end,
+              {description = "increase master width factor", group = "layout"}),
+    awful.key({ modkey, "Control" }, "h",     function () awful.tag.incmwfact(-0.05)          end,
+              {description = "decrease master width factor", group = "layout"}),
+
+    -- change number of master clients
+    awful.key({ modkey, "Control" }, "k",     function () awful.tag.incnmaster( 1, nil, true) end,
+              {description = "increase the number of master clients", group = "layout"}),
+    awful.key({ modkey, "Control" }, "j",     function () awful.tag.incnmaster(-1, nil, true) end,
+              {description = "decrease the number of master clients", group = "layout"}),
+
     -- Swap clients
     awful.key({ modkey, "Shift"   }, "j", function () awful.client.swap.byidx(  1)    end,
               {description = "swap with next client by index", group = "client"}),
@@ -335,10 +354,8 @@ globalkeys = mytable.join(
               {description = "swap with previous client by index", group = "client"}),
 
     -- Swap screens
-    awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end,
-              {description = "focus the next screen", group = "screen"}),
-    awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
-              {description = "focus the previous screen", group = "screen"}),
+    awful.key({ modkey }, "c", function () awful.screen.cycle() end,
+              {description = "cycle screens", group = "screen"}),
 
     -- Urgent client
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
@@ -369,8 +386,13 @@ globalkeys = mytable.join(
         {description = "toggle wibox", group = "awesome"}),
 
     -- Show/hide titlebar
-    -- TODO fix
-    awful.key({ modkey, "Shift" }, "t", awful.titlebar.toggle,
+    awful.key({ modkey, "Shift" }, "t",
+        function ()
+            local c = client.focus
+            if c then
+                awful.titlebar.toggle(c)
+            end
+        end,
         {description = "toggle titlebar", group = "awesome"}),
 
     -- Dynamic tagging
@@ -737,10 +759,4 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
--- }}}
-
--- {{{ Autostart
-awful.spawn('xset r rate 340 40')
-awful.spawn('setxkbmap -option "caps:escape"')
-awful.spawn('compton -b')
 -- }}}
