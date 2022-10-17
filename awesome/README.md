@@ -1,6 +1,7 @@
-# todo
+# Requires
+https://github.com/lcpz/lain
 
-map tags from 1-9 to uiop[]789
+# todo
 
 autostart
 - xset r rate 280 40
