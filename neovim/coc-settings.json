@@ -51,5 +51,8 @@
     // snippets
     //"snippet.choicesMenuPicker": true,
     "snippet.nextPlaceholderOnDelete": true,
-    "snippet.highlight": true
+    "snippet.highlight": true,
+    "cSpell.userWords": [
+      "Ortto"
+    ]
 }

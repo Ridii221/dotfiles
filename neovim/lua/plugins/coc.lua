@@ -65,7 +65,7 @@ keymap("n", "<leader>rn", "<Plug>(coc-rename)>", opts)
 keymap("n", "<leader>rr", "<Plug>(coc-refactor)>", opts)
 
 -- organize imports
-keymap("n", "<leader>ai", ":OR", opts)
+keymap("n", "<leader>ai", ":OR<cr>", opts)
 
 -- Apply AutoFix to problem on the current line.
 keymap("n", "<leader>af", "<Plug>(coc-fix-current)", opts)

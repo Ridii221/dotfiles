@@ -11,7 +11,7 @@ vim.keymap.set('n', 'fh', builtin.help_tags)
 vim.keymap.set('n', 'fs', builtin.git_status)
 vim.keymap.set('n', 'fc', builtin.git_commits)
 vim.keymap.set('n', 'fC', builtin.git_bcommits)
-vim.keymap.set('n', 'fp', builtin.resume)
+vim.keymap.set('n', '<leader>fp', builtin.resume)
 
 telescope.setup({
     defaults = {
