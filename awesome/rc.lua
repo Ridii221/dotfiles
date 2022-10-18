@@ -354,7 +354,7 @@ globalkeys = mytable.join(
               {description = "swap with previous client by index", group = "client"}),
 
     -- Swap screens
-    awful.key({ modkey }, "c", function () awful.screen.cycle() end,
+    awful.key({ modkey }, "i", function () awful.screen.focus_relative(1) end,
               {description = "cycle screens", group = "screen"}),
 
     -- Urgent client
@@ -440,7 +440,21 @@ globalkeys = mytable.join(
     --           {description = "-10%", group = "hotkeys"}),
 
     -- Audio control
-    -- TODO
+    awful.key({ }, "XF86AudioPlay",
+        function ()
+            os.execute("sp play")
+        end,
+        {description = "spotify play", group = "hotkeys"}),
+    awful.key({ }, "XF86AudioNext",
+        function ()
+            os.execute("sp next")
+        end,
+        {description = "spotify next", group = "hotkeys"}),
+    awful.key({ }, "XF86AudioPrev",
+        function ()
+            os.execute("sp prev")
+        end,
+        {description = "spotify previous", group = "hotkeys"}),
     
     -- ALSA volume control
     awful.key({ }, "XF86AudioRaiseVolume",
@@ -468,8 +482,8 @@ globalkeys = mytable.join(
               {description = "open a terminal", group = "launcher"}),
 
     -- User programs
-    awful.key({ modkey }, "b", function () awful.spawn(browser) end,
-              {description = "run browser", group = "launcher"}),
+    -- awful.key({ modkey }, "b", function () awful.spawn(browser) end,
+    --           {description = "run browser", group = "launcher"}),
 
     -- TODO open filebrowser
     -- awful.key({ modkey }, "f", function () awful.spawn("ff") end,

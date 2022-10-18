@@ -18,7 +18,7 @@
     // inlay hints
     "inlayHint.enable": false,
     // lists
-    "list.source.diagnostics.defaultOptions": ["--normal", "--auto-preview", "--no-quit"],
+    "list.source.diagnostics.defaultOptions": ["--normal", "--auto-preview"],
     "list.source.extensions.defaultOptions": ["--normal"],
     "list.source.outline.defaultOptions": ["--auto-preview", "--no-quit"],
     "list.source.snippets.defaultOptions": ["--auto-preview"],
