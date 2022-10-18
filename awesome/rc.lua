@@ -86,7 +86,7 @@ local editor       = os.getenv("EDITOR") or "nvim"
 local browser      = "firefox"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "1", "2", "3", "4", "5", "6" }
+awful.util.tagnames = { "w", "ff", "o", "s", "..." }
 awful.layout.layouts = {
     awful.layout.suit.tile,
     -- awful.layout.suit.tile.left,
@@ -246,11 +246,10 @@ globalkeys = mytable.join(
     -- Destroy all notifications
     awful.key({ "Control",           }, "space", function() naughty.destroy_all_notifications() end,
               {description = "destroy all notifications", group = "hotkeys"}),
+
     -- Take a screenshot
-    -- https://github.com/lcpz/dots/blob/master/bin/screenshot
-    -- TODO
-    -- awful.key({ altkey }, "p", function() os.execute("screenshot") end,
-    --           {description = "take a screenshot", group = "hotkeys"}),
+    awful.key({ altkey }, "\\", function() os.execute("screenshot") end,
+              {description = "take a screenshot", group = "hotkeys"}),
 
     -- X screen locker
     -- TODO
@@ -455,7 +454,7 @@ globalkeys = mytable.join(
             os.execute("sp prev")
         end,
         {description = "spotify previous", group = "hotkeys"}),
-    
+
     -- ALSA volume control
     awful.key({ }, "XF86AudioRaiseVolume",
         function ()
@@ -480,10 +479,6 @@ globalkeys = mytable.join(
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
-
-    -- User programs
-    -- awful.key({ modkey }, "b", function () awful.spawn(browser) end,
-    --           {description = "run browser", group = "launcher"}),
 
     -- TODO open filebrowser
     -- awful.key({ modkey }, "f", function () awful.spawn("ff") end,
@@ -529,7 +524,7 @@ globalkeys = mytable.join(
 clientkeys = mytable.join(
     awful.key({ altkey, "Shift"   }, "m",      lain.util.magnify_client,
               {description = "magnify client", group = "client"}),
-    awful.key({ modkey,           }, "f",
+    awful.key({ modkey, "Shift"   }, "f",
         function (c)
             c.fullscreen = not c.fullscreen
             c:raise()
@@ -539,7 +534,7 @@ clientkeys = mytable.join(
     awful.key({ modkey,           }, "q",      function (c) c:kill()                         end,
               {description = "close", group = "client"}),
 
-    awful.key({ modkey, "Control" }, "space",  awful.client.floating.toggle                     ,
+    awful.key({ modkey,           }, "f",  awful.client.floating.toggle,
               {description = "toggle floating", group = "client"}),
 
     awful.key({ modkey, "Control" }, "Return", function (c) c:swap(awful.client.getmaster()) end,
@@ -578,13 +573,20 @@ clientkeys = mytable.join(
             c.maximized_horizontal = not c.maximized_horizontal
             c:raise()
         end ,
-        {description = "(un)maximize horizontally", group = "client"})
+        {description = "(un)maximize horizontally", group = "client"}),
+
+    -- change opacity
+    awful.key({ modkey, altkey    }, "[",      function (c) c.opacity = c.opacity - 0.1      end,
+              {description = "decrease opacity", group = "client"}),
+    awful.key({ modkey, altkey    }, "]",      function (c) c.opacity = c.opacity + 0.1      end,
+              {description = "increase opacity", group = "client"})
 )
 
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, 6 do
+for i = 1, 5 do
+    local alt_screen_key = { '8', '9', '0', '-', '=' }
     globalkeys = mytable.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
@@ -596,8 +598,26 @@ for i = 1, 6 do
                         end
                   end,
                   {description = "view tag #"..i, group = "tag"}),
+        awful.key({ modkey }, alt_screen_key[i],
+                  function ()
+                        local screen = awful.screen.focused()
+                        local tag = screen.tags[i]
+                        if tag then
+                           tag:view_only()
+                        end
+                  end,
+                  {description = "view tag #"..i, group = "tag"}),
         -- Toggle tag display.
         awful.key({ modkey, "Control" }, "#" .. i + 9,
+                  function ()
+                      local screen = awful.screen.focused()
+                      local tag = screen.tags[i]
+                      if tag then
+                         awful.tag.viewtoggle(tag)
+                      end
+                  end,
+                  {description = "toggle tag #" .. i, group = "tag"}),
+        awful.key({ modkey, "Control" }, alt_screen_key[i],
                   function ()
                       local screen = awful.screen.focused()
                       local tag = screen.tags[i]
@@ -617,17 +637,28 @@ for i = 1, 6 do
                      end
                   end,
                   {description = "move focused client to tag #"..i, group = "tag"}),
-        -- Toggle tag on focused client.
-        awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
+        awful.key({ modkey, "Shift" }, alt_screen_key[i],
                   function ()
                       if client.focus then
                           local tag = client.focus.screen.tags[i]
                           if tag then
-                              client.focus:toggle_tag(tag)
+                              client.focus:move_to_tag(tag)
                           end
-                      end
+                     end
                   end,
-                  {description = "toggle focused client on tag #" .. i, group = "tag"})
+                  {description = "move focused client to tag #"..i, group = "tag"})
+        -- Toggle tag on focused client.
+        -- TODO po co to??
+        -- awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
+        --           function ()
+        --               if client.focus then
+        --                   local tag = client.focus.screen.tags[i]
+        --                   if tag then
+        --                       client.focus:toggle_tag(tag)
+        --                   end
+        --               end
+        --           end,
+        --           {description = "toggle focused client on tag #" .. i, group = "tag"})
     )
 end
 
@@ -696,8 +727,8 @@ awful.rules.rules = {
     -- },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
-    { rule = { class = "Firefox" },
-        properties = { screen = 1, tag = "2" } },
+    -- { rule = { class = "Firefox" },
+    --     properties = { screen = 1, tag = "2" } },
 }
 
 -- }}}
@@ -774,3 +805,4 @@ client.connect_signal("focus", function(c) c.border_color = beautiful.border_foc
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 
 -- }}}
+-- vim:fileencoding=utf-8:foldmethod=marker

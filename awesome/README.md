@@ -17,6 +17,18 @@ chmod +x sp
 cp ./sp ~/.local/bin/
 ```
 
+### screenshots
+```sh
+# requires scrot
+wget -P ~/.local/bin/ https://raw.githubusercontent.com/lcpz/dots/master/bin/screenshot
+chmod +x ~/.local/bin/screenshot
+```
+
+### cava (audio visualizer)
+```
+apt install cava
+```
+
 # todo
 
 autostart
