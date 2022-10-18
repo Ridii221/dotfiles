@@ -23,10 +23,6 @@ end
 
 -- Config
 local config = {
-  extensions = {
-    'quickfix',
-    'symbols-outline',
-  },
   options = {
     globalstatus = false,
     component_separators = '',
@@ -120,6 +116,9 @@ ins_left({
 }, {inactive = true})
 
 ins_left { 'location', color = { gui = 'bold'} }
+ins_left { 'progress', cond = function ()
+    return vim.api.nvim_buf_line_count(0) >= 100
+end}
 
 ins_left {
   'diagnostics',
@@ -134,13 +133,13 @@ ins_left {
     end
 }
 
-ins_left({
-  function()
-    return vim.g.coc_status;
-  end,
-  icon = ' ',
-  color = { gui = 'bold' },
-})
+-- ins_left({
+--   function()
+--     return vim.g.coc_status;
+--   end,
+--   icon = ' ',
+--   color = { gui = 'bold' },
+-- })
 
 ins_right {
   'branch',

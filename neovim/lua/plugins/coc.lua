@@ -37,9 +37,6 @@ keymap("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
 -- Make <CR> to accept selected completion item or notify coc.nvim to format
 keymap("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
 
--- Use <c-space> to trigger completion.
-keymap("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
-
 -- Use `[g` and `]g` to navigate diagnostics
 keymap("n", "[g", "<Plug>(coc-diagnostic-prev)", {silent = true})
 keymap("n", "]g", "<Plug>(coc-diagnostic-next)", {silent = true})
@@ -53,10 +50,6 @@ keymap("n", "gr", "<Plug>(coc-references)", {silent = true})
 -- Use K to show documentation in preview window.
 keymap("n", "K", '<CMD>lua _G.show_docs()<CR>', {silent = true})
 
--- Formatting selected code.
-keymap("x", "<leader>f", "<Plug>(coc-format-selected)", {silent = true})
-keymap("n", "<leader>F", "<Plug>(coc-format)", {silent = true})
-
 -- codeAction and refactor mappings
 local opts = {silent = true, nowait = true}
 keymap("x", "<leader>a", "<Plug>(coc-codeaction-selected)", opts)
@@ -69,6 +62,10 @@ keymap("n", "<leader>ai", ":OR<cr>", opts)
 
 -- Apply AutoFix to problem on the current line.
 keymap("n", "<leader>af", "<Plug>(coc-fix-current)", opts)
+
+-- Formatting selected code.
+keymap("x", "<leader>f", "<Plug>(coc-format-selected)", {silent = true})
+keymap("n", "<leader>F", "<Plug>(coc-format)", {silent = true})
 
 -- Run the Code Lens action on the current line.
 -- todo: what is code lens

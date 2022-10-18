@@ -22,14 +22,14 @@ return require('packer').startup(function(use)
     use 'ap/vim-css-color'
     use {
         'lukas-reineke/indent-blankline.nvim',
-        config = function() 
+        config = function()
             vim.g.indentLine_char_list = {'▏'}
         end,
     }
     use 'kyazdani42/nvim-web-devicons'
 
     -- movement
-    use 'easymotion/vim-easymotion'
+    -- use 'easymotion/vim-easymotion'
 
     -- status line
     use {
@@ -71,7 +71,7 @@ return require('packer').startup(function(use)
 
     -- LSP, completions and snippets
     use {
-        'neoclide/coc.nvim', 
+        'neoclide/coc.nvim',
         branch = 'release',
         config = function()
             require('plugins.coc')
@@ -94,5 +94,4 @@ return require('packer').startup(function(use)
         end,
     }
     use 'p00f/nvim-ts-rainbow'
-   
 end)
