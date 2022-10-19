@@ -30,9 +30,16 @@ telescope.setup({
             preview_cutoff = 10,
             width = 0.7
           },
-        }
+        },
     },
     pickers = {
+        find_files = {
+            path_display = { shorten = 3 },
+        },
+        live_grep = {
+            path_display = {'hidden'},
+            layout_strategy = 'center'
+        },
         -- experiment
         grep_string = {
             layout_strategy = 'cursor',

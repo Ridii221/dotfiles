@@ -60,7 +60,7 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "urxvtd", "unclutter -root", 'xset r rate 340 40', 'setxkbmap -option "caps:escape"', 'compton -b' }) -- comma-separated entries
+run_once({ "urxvtd", "unclutter -root", 'xset r rate 260 45', 'setxkbmap -option "caps:escape"', 'compton -b' }) -- comma-separated entries
 
 -- This function implements the XDG autostart specification
 --[[
@@ -87,29 +87,31 @@ local browser      = "firefox"
 
 awful.util.terminal = terminal
 awful.util.tagnames = { "w", "ff", "o", "s", "..." }
+local l = awful.layout.suit  -- Just to save some typing: use an alias.
+awful.util.tag_layouts = { l.tile, l.tile, l.floating, l.floating, l.floating }
 awful.layout.layouts = {
-    awful.layout.suit.tile,
-    -- awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    --awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    -- awful.layout.suit.spiral,
-    -- awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-    -- awful.layout.suit.max.fullscreen,
-    awful.layout.suit.magnifier,
-    -- awful.layout.suit.corner.nw,
-    awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    awful.layout.suit.corner.se,
+    l.tile,
+    -- l.tile.left,
+    l.tile.bottom,
+    --l.tile.top,
+    l.fair,
+    l.fair.horizontal,
+    -- l.spiral,
+    -- l.spiral.dwindle,
+    l.max,
+    -- l.max.fullscreen,
+    l.magnifier,
+    -- l.corner.nw,
+    l.corner.ne,
+    -- l.corner.sw,
+    l.corner.se,
     -- lain.layout.cascade,
     lain.layout.cascade.tile,
     -- lain.layout.centerwork,
     -- lain.layout.centerwork.horizontal,
     -- lain.layout.termfair,
     -- lain.layout.termfair.center,
-    awful.layout.suit.floating,
+    l.floating,
 }
 
 lain.layout.cascade.tile.offset_x      = 10
@@ -503,7 +505,7 @@ globalkeys = mytable.join(
         end,
         {description = "show rofi", group = "launcher"}),
     --]]
-    
+
     -- Prompt
     awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
@@ -567,7 +569,7 @@ clientkeys = mytable.join(
             c:raise()
        end ,
         {description = "(un)maximize vertically", group = "client"}),
-    
+
     awful.key({ modkey, "Shift"   }, "m",
         function (c)
             c.maximized_horizontal = not c.maximized_horizontal
@@ -586,7 +588,7 @@ clientkeys = mytable.join(
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 5 do
-    local alt_screen_key = { '8', '9', '0', '-', '=' }
+    local alt_screen_key = { '7', '8', '9', '0', '-' }
     globalkeys = mytable.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
