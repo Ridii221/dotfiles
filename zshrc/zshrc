@@ -28,6 +28,7 @@ alias gp="git push"
 
 alias ek="$EDITOR $HOME/.config/kitty/kitty.conf"
 alias ea="$EDITOR $HOME/.config/awesome/rc.lua"
+alias en="$EDITOR $HOME/.config/nvim/"
 
 alias youtube-wav="youtube-dl -x --audio-format wav"
 
