@@ -9,6 +9,7 @@ vim.keymap.set('n', '<leader>fw', builtin.grep_string)
 vim.keymap.set('n', '<leader>fb', builtin.buffers)
 vim.keymap.set('n', '<leader>fh', builtin.help_tags)
 vim.keymap.set('n', '<leader>fs', builtin.git_status)
+vim.keymap.set('n', '<leader>fg', builtin.git_branches)
 vim.keymap.set('n', '<leader>fc', builtin.git_commits)
 vim.keymap.set('n', '<leader>fC', builtin.git_bcommits)
 vim.keymap.set('n', '<leader>fr', builtin.resume)
@@ -37,8 +38,7 @@ telescope.setup({
             path_display = { shorten = 3 },
         },
         live_grep = {
-            path_display = {'hidden'},
-            layout_strategy = 'center'
+            path_display = { 'tail' },
         },
         -- experiment
         grep_string = {

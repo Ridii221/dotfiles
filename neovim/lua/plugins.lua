@@ -14,22 +14,24 @@ return require('packer').startup(function(use)
 
     -- themes and looks
     use {'dracula/vim', as = 'dracula'}
+    use 'kyazdani42/nvim-web-devicons'
 
     -- basic
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
     use 'fladson/vim-kitty'
-    use 'ap/vim-css-color'
+    use {
+        'norcalli/nvim-colorizer.lua',
+        config = function()
+            require('plugins.colorizer')
+        end,
+    }
     use {
         'lukas-reineke/indent-blankline.nvim',
         config = function()
             vim.g.indentLine_char_list = {'▏'}
         end,
     }
-    use 'kyazdani42/nvim-web-devicons'
-
-    -- movement
-    -- use 'easymotion/vim-easymotion'
 
     -- status line
     use {
@@ -67,7 +69,6 @@ return require('packer').startup(function(use)
     }
     use 'nvim-telescope/telescope-fzy-native.nvim'
     use 'xiyaowong/telescope-emoji.nvim'
-    -- todo: use {'nvim-telescope/telescope-media-files.nvim', opt = false}
 
     -- LSP, completions and snippets
     use {

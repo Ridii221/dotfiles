@@ -53,6 +53,8 @@
     "snippet.nextPlaceholderOnDelete": true,
     "snippet.highlight": true,
     "cSpell.userWords": [
-      "Ortto"
+      "Formik",
+      "Ortto",
+      "arfield"
     ]
 }
