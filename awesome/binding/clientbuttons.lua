@@ -5,8 +5,6 @@ local awful = require("awful")
 local _M = {}
 local modkey = RC.vars.modkey
 
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
 function _M.get()
   local clientbuttons = gears.table.join(
     awful.button({ }, 1, function (c)
@@ -24,7 +22,5 @@ function _M.get()
 
   return clientbuttons
 end
-
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 return setmetatable({}, { __call = function(_, ...) return _M.get(...) end })

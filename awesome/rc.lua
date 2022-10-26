@@ -17,8 +17,12 @@ RC = {} -- global namespace, on top before require any modules
 RC.vars = require("main.user-variables")
 -- }}}
 
--- {{{ Error handling 
+-- {{{ Error handling
 require("main.error-handling")
+-- }}}
+
+-- {{{ Autostart
+require("main.autostart")
 -- }}}
 
 -- {{{ Variable definitions
@@ -39,7 +43,7 @@ local main = {
 
 -- Custom Local Library: Keys and Mouse Binding
 local binding = {
-  globalbuttons = require("binding.globalbuttons"),
+  mousebuttons  = require("binding.mousebuttons"),
   clientbuttons = require("binding.clientbuttons"),
   globalkeys    = require("binding.globalkeys"),
   bindtotags    = require("binding.bindtotags"),
@@ -79,7 +83,7 @@ RC.globalkeys = binding.globalkeys()
 RC.globalkeys = binding.bindtotags(RC.globalkeys)
 
 -- Set root
-root.buttons(binding.globalbuttons())
+root.buttons(binding.mousebuttons())
 root.keys(RC.globalkeys)
 -- }}}
 

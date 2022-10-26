@@ -11,11 +11,6 @@ local beautiful = require("beautiful")
 -- Custom Local Library: Common Functional Decoration
 require("deco.titlebar")
 
--- reading
--- https://awesomewm.org/apidoc/classes/signals.html
-
--- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
-
 -- {{{ Signals
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c)

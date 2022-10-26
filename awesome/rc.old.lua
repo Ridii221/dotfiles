@@ -523,7 +523,7 @@ globalkeys = mytable.join(
     --]]
 )
 
-clientkeys = mytable.join(
+clientkeys = mytable.join(-- {{{
     awful.key({ altkey, "Shift"   }, "m",      lain.util.magnify_client,
               {description = "magnify client", group = "client"}),
     awful.key({ modkey, "Shift"   }, "f",
@@ -582,7 +582,7 @@ clientkeys = mytable.join(
               {description = "decrease opacity", group = "client"}),
     awful.key({ modkey, altkey    }, "]",      function (c) c.opacity = c.opacity + 0.1      end,
               {description = "increase opacity", group = "client"})
-)
+)-- }}}
 
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it work on any keyboard layout.
