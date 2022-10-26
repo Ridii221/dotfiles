@@ -1,3 +1,4 @@
+-- {{{ Required modules
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
@@ -14,9 +15,11 @@ local menubar = require("menubar")
 
 RC = {} -- global namespace, on top before require any modules
 RC.vars = require("main.user-variables")
+-- }}}
 
--- {{{ Error handling -- }}}
+-- {{{ Error handling 
 require("main.error-handling")
+-- }}}
 
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
@@ -81,7 +84,7 @@ root.keys(RC.globalkeys)
 -- }}}
 
 -- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
+-- mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Statusbar: Wibar
 require("deco.statusbar")
@@ -98,4 +101,4 @@ awful.rules.rules = main.rules(
 -- {{{ Signals
 require("main.signals")
 -- }}}
-
+-- vim:fileencoding=utf-8:foldmethod=marker
