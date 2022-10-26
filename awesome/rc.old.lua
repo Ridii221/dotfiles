@@ -18,6 +18,39 @@ local mytable       = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 -- }}}
 
+-- {{{ Error handling
+
+-- Check if awesome encountered an error during startup and fell back to
+-- another config (This code will only ever execute for the fallback config)
+if awesome.startup_errors then
+    naughty.notify {
+        preset = naughty.config.presets.critical,
+        title = "Oops, there were errors during startup!",
+        text = awesome.startup_errors
+    }
+end
+
+-- Handle runtime errors after startup
+do
+    local in_error = false
+
+    awesome.connect_signal("debug::error", function (err)
+        if in_error then return end
+
+        in_error = true
+
+        naughty.notify {
+            preset = naughty.config.presets.critical,
+            title = "Oops, an error happened!",
+            text = tostring(err)
+        }
+
+        in_error = false
+    end)
+end
+
+-- }}}
+
 -- {{{ Autostart windowless processes
 
 -- This function will run once every time Awesome is started
@@ -116,6 +149,54 @@ awful.util.tasklist_buttons = mytable.join(
 )
 
 beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
+
+-- }}}
+
+-- {{{ Menu
+
+-- Create a launcher widget and a main menu
+local myawesomemenu = {
+   { "Hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
+   { "Docs", function()
+        awful.util.spawn(string.format("%s %s", browser, "https://awesomewm.org/doc/api/index.html"))
+        -- awful.client.focus({})
+    end },
+   { "Edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
+   { "Restart", awesome.restart },
+   { "Quit", function() awesome.quit() end },
+}
+
+awful.util.mymainmenu = freedesktop.menu.build {
+    before = {
+        { "Awesome", myawesomemenu, beautiful.awesome_icon },
+        -- other triads can be put here
+    },
+    after = {
+        { "Open terminal", terminal },
+        -- other triads can be put here
+    }
+}
+
+-- Hide the menu when the mouse leaves it
+--[[
+awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function()
+    if not awful.util.mymainmenu.active_child or
+       (awful.util.mymainmenu.wibox ~= mouse.current_wibox and
+       awful.util.mymainmenu.active_child.wibox ~= mouse.current_wibox) then
+        awful.util.mymainmenu:hide()
+    else
+        awful.util.mymainmenu.active_child.wibox:connect_signal("mouse::leave",
+        function()
+            if awful.util.mymainmenu.wibox ~= mouse.current_wibox then
+                awful.util.mymainmenu:hide()
+            end
+        end)
+    end
+end)
+--]]
+
+-- Set the Menubar terminal for applications that require it
+menubar.utils.terminal = terminal
 
 -- }}}
 
@@ -727,3 +808,4 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 -- }}}
 -- vim:fileencoding=utf-8:foldmethod=marker
+

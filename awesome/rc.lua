@@ -58,7 +58,7 @@ RC.tags = main.tags()
 
 -- {{{ Menu
 -- Create a laucher widget and a main menu
-RC.mainmenu = awful.menu({ items = main.menu() }) -- in globalkeys
+RC.mainmenu = main.menu() -- in globalkeys
 
 -- a variable needed in statusbar (helper)
 RC.launcher = awful.widget.launcher(
