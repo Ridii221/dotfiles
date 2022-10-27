@@ -47,9 +47,9 @@ function _M.get(clientkeys, clientbuttons)
 
     -- Add titlebars to normal clients and dialogs
     { rule_any = {
-        type = { "normal", "dialog" }
+        role = { "pop-up" },
+        type = { "dialog" }
       },
-      role = { "pop-up" },
       properties = {
         titlebars_enabled = true
       }

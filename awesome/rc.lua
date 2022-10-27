@@ -5,6 +5,7 @@ pcall(require, "luarocks.loader")
 
 -- Standard awesome library
 local gears = require("gears")
+local naughty = require("naughty")
 local awful = require("awful")
 
 -- Theme handling library
@@ -87,12 +88,28 @@ root.buttons(binding.mousebuttons())
 root.keys(RC.globalkeys)
 -- }}}
 
--- Keyboard map indicator and switcher
--- mykeyboardlayout = awful.widget.keyboardlayout()
+-- {{{ UI Settings
+-- Custom Local Library: Common Functional ui.ation
+local taglist = require("ui.taglist")
+local tasklist = require("ui.tasklist")
 
--- {{{ Statusbar: Wibar
-require("deco.statusbar")
+awful.util.taglist_buttons = taglist()
+awful.util.tasklist_buttons = tasklist()
+
+require("ui.wallpaper")
+-- TODO: nadpisuje defaults prze theme.lua
+-- require('ui.statusbar')
+require('ui.titlebar')
+
 -- }}}
+
+-- {{{ Apply theme
+local chosen_theme = RC.vars.chosen_theme
+beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/" .. chosen_theme .. "/theme.lua")
+-- }}}
+
+-- Create a wibox for each screen and add it
+awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).

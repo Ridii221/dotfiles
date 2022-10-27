@@ -14,6 +14,8 @@ local _M = {
   modkey = "Mod4",
   altkey = "Mod1",
 
+  -- theme
+  chosen_theme = 'draco-mountain',
 
   -- user defined wallpaper
   wallpaper = nil,

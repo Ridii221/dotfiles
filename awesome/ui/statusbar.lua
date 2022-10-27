@@ -5,16 +5,6 @@ local awful     = require("awful")
 -- Wibox handling library
 local wibox = require("wibox")
 
--- Custom Local Library: Common Functional Decoration
-local deco = {
-  wallpaper = require("deco.wallpaper"),
-  taglist   = require("deco.taglist"),
-  tasklist  = require("deco.tasklist")
-}
-
-local taglist_buttons  = deco.taglist()
-local tasklist_buttons = deco.tasklist()
-
 local _M = {}
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
