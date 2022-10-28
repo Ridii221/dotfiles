@@ -60,9 +60,11 @@ keymap('n', '<leader>tL', ':tabmove + <cr>', {})
 keymap('n', '<leader>tr', ':.+1,$tabdo :q <cr>', {})
 keymap('n', '<leader>tR', ':.-1,1tabdo :q <cr>', {})
 
--- move to start/end of the line
-keymap('n', 'H', '0', {})
-keymap('n', 'L', 'g_', {})
+-- scroll horizontal/vertical
+keymap('n', '<C-h', 'zh', {})
+keymap('n', '<C-l>', 'zl', {})
+keymap('n', '<C-j>', '<C-e>', {})
+keymap('n', '<C-k>', '<C-y>', {})
 
 -- cycle commands history
 keymap('c', '<c-j>', '<c-n>', {})
