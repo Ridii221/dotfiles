@@ -9,7 +9,7 @@ keymap('', '<c-s>', ':w<cr>', {})
 keymap('i', '<c-s>', '<c-o>:w<cr>', {})
 
 -- delete word OS style
-keymap('i', '<c-BS>', '<c-w>', {})
+keymap('!', '<c-BS>', '<c-w>', {})
 
 -- edit and load config file
 keymap('n', '<leader>C', ':tabe $MYVIMRC<cr>', {})
