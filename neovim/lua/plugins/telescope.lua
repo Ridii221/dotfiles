@@ -4,7 +4,7 @@ local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', builtin.builtin)
 vim.keymap.set('n', '<leader>fi', builtin.find_files)
 vim.keymap.set('n', '<leader>fI', function () builtin.find_files({ cwd = os.getenv("HOME"), hidden = true }) end)
-vim.keymap.set('n', '<leader>fd', builtin.live_grep)
+vim.keymap.set('n', '<leader>fd', function () builtin.grep_string({ search = "", layout_strategy = 'horizontal' }) end)
 vim.keymap.set('n', '<leader>fw', builtin.grep_string)
 vim.keymap.set('n', '<leader>fb', builtin.buffers)
 vim.keymap.set('n', '<leader>fh', builtin.help_tags)
@@ -40,7 +40,6 @@ telescope.setup({
         live_grep = {
             path_display = { 'tail' },
         },
-        -- experiment
         grep_string = {
             layout_strategy = 'cursor',
         }
