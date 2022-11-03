@@ -1,20 +1,14 @@
---[[
-    based on
-    https://github.com/lcpz/awesome-copycats
---]]
-
 local gears = require("gears")
 local lain  = require("lain")
 local awful = require("awful")
 local wibox = require("wibox")
 local dpi   = require("beautiful.xresources").apply_dpi
 
-local os = os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local theme                                     = {}
 theme.zenburn_dir                               = require("awful.util").get_themes_dir() .. "zenburn"
-theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/my"
+theme.dir                                       = gears.filesystem.get_configuration_dir() .. "themes/draco-mountain"
 theme.wallpaper                                 = theme.dir .. "/wall.jpg"
 theme.font                                      = "FiraCode Mono Font 10"
 
@@ -34,22 +28,8 @@ theme.border_marked                             = "#CC9393"
 
 theme.taglist_bg_focus = "#44475A"
 
-theme.tasklist_bg_focus = "#282A36"
+theme.tasklist_bg_focus = "#44475A"
 theme.tasklist_fg_focus = "#F8F8F2"
-theme.tasklist_fg_normal = "#6272A4"
-
--- There are other variable sets
--- overriding the default one when
--- defined, the sets are:
--- taglist_[bg|fg]_[focus|urgent|occupied|empty|volatile]
--- tasklist_[bg|fg]_[focus|urgent]
--- titlebar_[bg|fg]_[normal|focus]
--- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
--- mouse_finder_[color|timeout|animate_timeout|radius|factor]
--- prompt_[fg|bg|fg_cursor|bg_cursor|font]
--- hotkeys_[bg|fg|border_width|border_color|shape|opacity|modifiers_fg|label_bg|label_fg|group_margin|font|description_font]
--- Example:
---theme.taglist_bg_focus = "#ff0000"
 
 theme.taglist_squares_sel                       = theme.dir .. "/icons/square_sel.png"
 theme.taglist_squares_unsel                     = theme.dir .. "/icons/square_unsel.png"
@@ -81,7 +61,7 @@ theme.layout_txt_centerfair                     = "[centerfair]"
 theme.layout_txt_cascadetile                    = "[c]"
 
 theme.tasklist_plain_task_name                  = true
-theme.tasklist_disable_icon                     = true
+theme.tasklist_disable_icon                     = false
 theme.useless_gap                               = dpi(4)
 theme.titlebar_close_button_normal              = theme.zenburn_dir.."/titlebar/close_normal.png"
 theme.titlebar_close_button_focus               = theme.zenburn_dir.."/titlebar/close_focus.png"
@@ -121,45 +101,6 @@ theme.cal = lain.widget.cal({
     }
 })
 
--- Mail IMAP check
---[[ to be set before use
-theme.mail = lain.widget.imap({
-    timeout  = 180,
-    server   = "server",
-    mail     = "mail",
-    password = "keyring get mail",
-    settings = function()
-        mail  = ""
-        count = ""
-
-        if mailcount > 0 then
-            mail = "Mail "
-            count = mailcount .. " "
-        end
-
-        widget:set_markup(markup(gray, mail) .. count)
-    end
-})
---]]
-
--- MPD
-theme.mpd = lain.widget.mpd({
-    settings = function()
-        artist = mpd_now.artist .. " "
-        title  = mpd_now.title  .. " "
-
-        if mpd_now.state == "pause" then
-            artist = "mpd "
-            title  = "paused "
-        elseif mpd_now.state == "stop" then
-            artist = ""
-            title  = ""
-        end
-
-        widget:set_markup(markup.font(theme.font, markup(gray, artist) .. title))
-    end
-})
-
 -- CPU
 local cpu = lain.widget.sysload({
     settings = function()
@@ -174,15 +115,7 @@ local mem = lain.widget.mem({
     end
 })
 
--- /home fs
---[[ commented because it needs Gio/Glib >= 2.54
-theme.fs = lain.widget.fs({
-    partition = "/home",
-    notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "Terminus 10.5" },
-})
---]]
-
--- Battery
+-- TODO: Battery
 local bat = lain.widget.bat({
     settings = function()
         local perc = bat_now.perc
@@ -216,14 +149,6 @@ theme.volume = lain.widget.alsa({
     end
 })
 
--- Weather
---[[ to be set before use
-theme.weather = lain.widget.weather({
-    --APPID =
-    city_id = 2643743, -- placeholder (London)
-})
---]]
-
 local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
 
 -- Separators
@@ -237,9 +162,6 @@ local function update_txt_layoutbox(s)
 end
 
 function theme.at_screen_connect(s)
-    -- Quake application
-    s.quake = lain.util.quake({ app = awful.util.terminal })
-
     -- If wallpaper is a function, call it with the screen
     local wallpaper = theme.wallpaper
     if type(wallpaper) == "function" then
@@ -248,7 +170,7 @@ function theme.at_screen_connect(s)
     gears.wallpaper.maximized(wallpaper, s, true)
 
     -- Tags
-    awful.tag(awful.util.tagnames, s, awful.util.tag_layouts)
+    -- awful.tag(awful.util.tagnames, s, awful.util.tag_layouts)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
