@@ -28,9 +28,8 @@ theme.border_marked                             = "#CC9393"
 
 theme.taglist_bg_focus = "#44475A"
 
-theme.tasklist_bg_focus = "#282A36"
+theme.tasklist_bg_focus = "#44475A"
 theme.tasklist_fg_focus = "#F8F8F2"
-theme.tasklist_fg_normal = "#6272A4"
 
 theme.taglist_squares_sel                       = theme.dir .. "/icons/square_sel.png"
 theme.taglist_squares_unsel                     = theme.dir .. "/icons/square_unsel.png"
@@ -62,7 +61,7 @@ theme.layout_txt_centerfair                     = "[centerfair]"
 theme.layout_txt_cascadetile                    = "[c]"
 
 theme.tasklist_plain_task_name                  = true
-theme.tasklist_disable_icon                     = true
+theme.tasklist_disable_icon                     = false
 theme.useless_gap                               = dpi(4)
 theme.titlebar_close_button_normal              = theme.zenburn_dir.."/titlebar/close_normal.png"
 theme.titlebar_close_button_focus               = theme.zenburn_dir.."/titlebar/close_focus.png"
