@@ -1,11 +1,12 @@
 vim.g.loaded = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.keymap.set('', '<c-n>', ':NvimTreeToggle<cr>')
-vim.keymap.set('', '<leader>fn', ':NvimTreeFindFile<cr>')
+-- trying to move from tree to telescope
+-- vim.keymap.set('', '<c-n>', ':NvimTreeToggle<cr>')
+vim.keymap.set('', '<leader>fn', ':NvimTreeFindFileToggle<cr>')
 
 require("nvim-tree").setup({
-    open_on_setup = true,
+    open_on_setup = false,
     focus_empty_on_setup = false,
     sort_by = "case_sensitive",
     view = {

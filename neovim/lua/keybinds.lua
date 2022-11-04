@@ -64,14 +64,18 @@ keymap('n', '<leader>tr', ':.+1,$tabdo :q <cr>', {})
 keymap('n', '<leader>tR', ':.-1,1tabdo :q <cr>', {})
 
 -- scroll horizontal/vertical
-keymap('n', '<C-h', 'zh', {})
+keymap('n', '<C-h>', 'zh', {})
 keymap('n', '<C-l>', 'zl', {})
 keymap('n', '<C-j>', '<C-e>', {})
 keymap('n', '<C-k>', '<C-y>', {})
+
+-- move to start/end of the line
+keymap('n', 'H', '0', { noremap = true })
+keymap('n', 'L', 'g_', { noremap = true })
 
 -- cycle commands history
 keymap('c', '<c-j>', '<c-n>', {})
 keymap('c', '<c-k>', '<c-p>', {})
 
--- input keybinds
-keymap('i', '<c-e>', '<c-o>dw', {})
+-- clear highlights
+keymap('', '<leader><Esc>', '<Cmd>nohlsearch<CR>', {})
