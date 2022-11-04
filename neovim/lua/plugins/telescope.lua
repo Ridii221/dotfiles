@@ -5,7 +5,7 @@ vim.keymap.set('n', '<leader>ff', builtin.resume)
 vim.keymap.set('n', '<leader>fr', builtin.builtin)
 vim.keymap.set('n', '<leader>fm', builtin.marks)
 vim.keymap.set('n', '<leader>fi', builtin.find_files)
-vim.keymap.set('n', '<leader>fI', function () builtin.find_files({ cwd = os.getenv("HOME"), hidden = true }) end)
+vim.keymap.set('n', '<leader>fI', function () builtin.find_files({ cwd = vim.call("expand", "%:p:h"), hidden = true }) end)
 vim.keymap.set('n', '<leader>fd', function () builtin.grep_string({ search = "", layout_strategy = 'horizontal' }) end)
 vim.keymap.set('n', '<leader>fw', builtin.grep_string)
 vim.keymap.set('n', '<leader>fb', builtin.buffers)
@@ -14,6 +14,8 @@ vim.keymap.set('n', '<leader>fs', builtin.git_status)
 vim.keymap.set('n', '<leader>fg', builtin.git_branches)
 vim.keymap.set('n', '<leader>fc', builtin.git_commits)
 vim.keymap.set('n', '<leader>fC', builtin.git_bcommits)
+vim.keymap.set('n', '<leader>fj', builtin.jumplist)
+vim.keymap.set('n', '<leader>fo', builtin.oldfiles)
 
 telescope.setup({
     defaults = {
