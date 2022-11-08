@@ -81,7 +81,7 @@ return require('packer').startup(function(use)
     use {
         'SirVer/ultisnips',
         config = function()
-            vim.g.UltiSnipsExpandTrigger = ""
+            vim.g.UltiSnipsExpandTrigger = "<Nop>"
         end
     }
     use 'honza/vim-snippets'

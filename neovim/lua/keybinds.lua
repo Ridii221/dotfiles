@@ -79,3 +79,4 @@ keymap('c', '<c-k>', '<c-p>', {})
 
 -- clear highlights
 keymap('', '<leader><Esc>', '<Cmd>nohlsearch<CR>', {})
+
