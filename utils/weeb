@@ -1,5 +1,20 @@
 #! python3
+# script to print random anime "art" 👍
 import random
+import argparse
+
+# {{{ parse args
+parser = argparse.ArgumentParser(description='weeb faces 😈')
+parser.add_argument('--neofetch',
+                    help='enable colors for neofetch --ascii_colors argument. ex: neofetch --ascii "$(weeb --neofetch)" --ascii_colors 3',
+                    dest='neofetch',
+                    nargs='?',
+                    required=False,
+                    const=True,
+                    default=False
+                    )
+args = parser.parse_args()
+# }}}
 
 # {{{ arts
 arts = """
@@ -195,5 +210,10 @@ next
 """
 # }}}
 
-print(random.choice(arts.split('next')))
+face = random.choice(arts.split('next'))
+
+if args.neofetch:
+    print('${c1}' + face.strip())
+else:
+    print(face.strip())
 # vim:fileencoding=utf-8:foldmethod=marker
