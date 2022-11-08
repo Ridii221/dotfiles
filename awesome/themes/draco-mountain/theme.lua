@@ -31,8 +31,6 @@ theme.taglist_bg_focus = "#44475A"
 theme.tasklist_bg_focus = "#44475A"
 theme.tasklist_fg_focus = "#F8F8F2"
 
-theme.taglist_squares_sel                       = theme.dir .. "/icons/square_sel.png"
-theme.taglist_squares_unsel                     = theme.dir .. "/icons/square_unsel.png"
 theme.menu_height                               = dpi(16)
 theme.menu_width                                = dpi(140)
 theme.awesome_icon                              = theme.dir .."/icons/awesome.png"
@@ -152,8 +150,7 @@ theme.volume = lain.widget.alsa({
 local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
 
 -- Separators
-local first = wibox.widget.textbox(markup.font("Terminus 4", " "))
-local spr   = wibox.widget.textbox(' ')
+local spr   = wibox.widget.textbox('   ')
 
 local function update_txt_layoutbox(s)
     -- Writes a string representation of the current layout in a textbox widget
@@ -200,22 +197,20 @@ function theme.at_screen_connect(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            first,
             s.mytaglist,
-            spr,
             s.mytxtlayoutbox,
-            --spr,
             s.mypromptbox,
             spr,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            spr,
             wibox.widget.systray(),
             spr,
             -- theme.mpd.widget,
-            -- theme.mail.widget,
             spotify_widget(),
+            spr,
             cpu.widget,
             mem.widget,
             -- bat.widget,
