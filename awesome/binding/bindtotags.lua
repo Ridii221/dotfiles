@@ -12,7 +12,7 @@ function _M.get(globalkeys)
     -- Be careful: we use keycodes to make it work on any keyboard layout.
     -- This should map on the top row of your keyboard, usually 1 to 9.
     for i = 1, 5 do
-        local alt_screen_key = { '7', '8', '9', '0', '-' }
+        local alt_screen_key = { 'u', 'i', 'o', 'p', '[' }
         globalkeys = gears.table.join(globalkeys,
             -- View tag only.
             awful.key({ modkey }, "#" .. i + 9,

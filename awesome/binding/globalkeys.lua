@@ -113,7 +113,7 @@ function _M.get()
     --           {description = "cycle screens", group = "screen"}),
 
     -- Urgent client
-    awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
+    awful.key({ modkey, altkey    }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
 
     awful.key({ modkey,           }, "Tab",
